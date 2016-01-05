@@ -1,0 +1,21 @@
+{
+  "name": "simpleshop",
+  "description": "",
+  "main": "index.js",
+  "license": "ISC",
+  "moduleType": [],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "./public/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.6",
+    "toastr": "~2.1.2",
+    "jquery": "~2.1.4"
+  }
+}

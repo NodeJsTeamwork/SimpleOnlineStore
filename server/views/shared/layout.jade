@@ -1,0 +1,35 @@
+doctype
+html
+    head
+        title Simple Onliine Shop
+        link(rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css")
+        link(rel="stylesheet" href="/lib/toastr/toastr.css")
+        link(rel="stylesheet" href="/css/app.css")
+    body
+    header.nav.navbar.navbar-fixed-top
+       .container
+           .navbar-header
+               a.navbar-brand(href="/") Simple Online Store
+           .navbar-collapse.collapse
+               ul.nav.navbar-nav
+                   li
+                       a(href="/") Home
+               ul.nav.navbar-nav.navbar-right
+                   if(currentUser)
+                      li
+                        a(href="/profile") Hello #{currentUser.username}
+                      li
+                        a(href="/logout") Logout
+                   else
+                      li
+                        a(href="/register") Register
+                      li
+                        a(href="/login") Login
+
+        .container
+          if (errorMessage)
+            .alert.alert-danger #{errorMessage}
+
+          block main-content
+
+        include scripts
