@@ -1,13 +1,13 @@
 {
   "name": "simpleshop",
   "version": "1.0.0",
-  "description": "",
+  "description": "Online Store app",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "body-parser": "^1.14.2",
     "connect-busboy": "0.0.2",

@@ -1,8 +1,8 @@
 {
   "name": "simpleshop",
-  "description": "",
-  "main": "index.js",
-  "license": "ISC",
+  "description": "Online Store app",
+  "main": "server.js",
+  "license": "MIT",
   "moduleType": [],
   "homepage": "",
   "ignore": [
