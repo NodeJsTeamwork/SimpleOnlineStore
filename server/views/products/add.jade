@@ -1,0 +1,32 @@
+extends ../shared/layout
+
+block main-content
+	div(class='well col-md-8')
+		form.form-horizontal
+			fieldset
+				legend 
+					| Add product
+				.form-group
+					label(class='col-md-2 control-label', for='category')
+						| Category
+					.col-md-10
+						select(class='form-control', id='category')
+							option Chair
+							option Table
+							option Desc
+							option Cabinet
+				.form-group
+					label(class='col-md-2 control-label', for='name')
+						| Name
+					.col-md-10
+						input(type='text', class='form-control', placeholder='Name', id='name')
+				.form-group
+					label(class='col-md-2 control-label', for='description')
+						| Description
+					.col-md-10
+						textarea(class='form-control', rows='3', id='description')
+				.form-group
+					label(class='col-md-2 control-label', for='price')
+						| Price
+					.col-md-10
+						input(type='number', class='form-control', placeholder='Price', id='price')
