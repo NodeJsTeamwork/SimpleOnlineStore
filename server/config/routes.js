@@ -10,6 +10,7 @@ module.exports = function(app) {
     app.get('/login', controllers.users.getLogin);
 
     app.get('/products/add', controllers.products.getAdd); // , auth.isInRole('admin')
+    app.post('/products', controllers.products.createProduct);
 
     app.get('/', function (req, res) {
       res.render('index', {currentUser: req.user});
