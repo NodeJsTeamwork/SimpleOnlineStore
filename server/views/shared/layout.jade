@@ -25,7 +25,8 @@ html
                       ul.nav.navbar-nav.navbar-right
                           if(currentUser)
                               li
-                                a(href="/profile") Hello #{currentUser.username}
+                                a(href="/profile") Hello 
+                                    span#currentUsername #{currentUser.username}
                               li
                                 a(href="/logout") Logout
                            else
