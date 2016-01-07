@@ -11,6 +11,8 @@ module.exports = function(app) {
 
     app.get('/products/add', controllers.products.getAdd);
     app.post('/products', controllers.products.createProduct);
+    
+    app.get('/live-chat', controllers.liveChat.getChat);
 
     app.get('/', function (req, res) {
       res.render('index', {currentUser: req.user});

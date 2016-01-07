@@ -1,0 +1,11 @@
+extends ../shared/layout
+block main-content
+    .container(ng-controller='LiveChatController as vm')
+      .panel.panel-primary
+        .panel-heading
+          h3.panel-title Online Support
+        .panel-body
+          .row
+            #messagesBox.col-md-12
+          .row
+            textarea#messageToSend.col-md-12(placeholder='Message')
