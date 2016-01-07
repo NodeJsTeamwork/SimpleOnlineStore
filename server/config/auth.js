@@ -23,21 +23,19 @@ module.exports = {
     },
     isAuthenticated: function(req, res, next) {
         if (!req.isAuthenticated()) {
-            res.status(403);
-            res.end();
+            return false;
         }
         else {
-            next();
+            return true;
         }
     },
     isInRole: function(role) {
         return function(req, res, next) {
             if (req.isAuthenticated() && req.user.roles.indexOf(role) > -1) {
-                next();
+                return true;
             }
             else {
-                res.status(403);
-                res.end();
+                return false;
             }
         }
     }
