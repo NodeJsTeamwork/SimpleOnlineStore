@@ -9,7 +9,7 @@ module.exports = function(app) {
     app.get('/logout', auth.logout);
     app.get('/login', controllers.users.getLogin);
 
-    app.get('/products/add', controllers.products.getAdd); // , auth.isInRole('admin')
+    app.get('/products/add', controllers.products.getAdd);
     app.post('/products', controllers.products.createProduct);
 
     app.get('/', function (req, res) {
