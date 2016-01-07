@@ -2,10 +2,10 @@
     'use strict';
 
     function productsService(data) {
-        var COMMITS_URL = 'products';
+        var PRODUCTS_URL = 'products';
 
         function createProduct(product) {
-            return data.post(COMMITS_URL, product);
+            return data.post(PRODUCTS_URL + '/admin/add', product);
         };
 
         return {

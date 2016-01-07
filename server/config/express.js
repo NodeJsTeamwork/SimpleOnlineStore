@@ -17,20 +17,11 @@ module.exports = function(app, config) {
     app.use(passport.session());
     app.use(express.static(config.rootPath + '/public'));
 
-    app.use('/products/add', function (req, res, next) {
+    app.use('/products/admin', function (req, res, next) {
       if (!auth.isInRole('admin')(req, res, next)) {
         req.session.error = 'You are not authorized!';
         res.redirect('/');
         return;
-      }
-
-      next();
-    });
-
-    app.use('/products/add', function (req, res, next) {
-      if (!auth.isInRole('admin')(req, res, next)) {
-        req.session.error = 'You are not authorized!';
-        res.redirect('/');
       }
 
       next();
