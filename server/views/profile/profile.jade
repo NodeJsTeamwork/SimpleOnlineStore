@@ -1,49 +1,49 @@
 extends ../shared/layout
 block main-content
-    .jumbotron.text-center
+    .jumbotron.text-center(ng-controller='UsersController as vm' ng-init="user=#{JSON.stringify(currentUser)}")
         h2
           | Personal Info
-        form(method="post", action="")  
-            .form-group
-                h4.col-lg-3.control-label Username:
-                
-                .col-lg-8
-                    input.form-control(value='#{currentUser.username}', type='text')
+          
+        .form-group
+            h4.col-lg-3.control-label Username:
             
-            .form-group
-                h4.col-lg-3.control-label First name:
-                
-                .col-lg-8
-                    input.form-control(value= currentUser.firstName || 'Not Specified', type='text')
-                    
-            .form-group
-                h4.col-lg-3.control-label Last name:
-                
-                .col-lg-8
-                    input.form-control(value= currentUser.lastName || 'Not Specified', type='text')
-                    
-            .form-group
-                h4.col-lg-3.control-label Phone:
-                
-                .col-lg-8
-                    input.form-control(value= currentUser.phone || 'Not Specified', type='text')
+            .col-lg-8
+                input.form-control(value='#{currentUser.username}', type='text' ng-model='user.username')
+        
+        .form-group
+            h4.col-lg-3.control-label First name:
             
-            .form-group
-                h4.col-lg-3.control-label Password:
+            .col-lg-8
+                input.form-control(value= currentUser.firstName || 'Not Specified', type='text' ng-model='user.firstName')
                 
-                .col-lg-8
-                    input.form-control(value='0088844545', type='password')
-                    
-            .form-group
-                h4.col-lg-3.control-label Confirm Password:
+        .form-group
+            h4.col-lg-3.control-label Last name:
+            
+            .col-lg-8
+                input.form-control(value= currentUser.lastName || 'Not Specified', type='text' ng-model='user.lastName')
                 
-                .col-lg-8
-                    input.form-control(value='0088844545', type='password')   
-                    
-            .form-group
-                .col-md-8
-                    button(type="submit" class="btn btn-primary") Save Changes
-                    a.btn.btn-default(href="/profile") Cancel
+        .form-group
+            h4.col-lg-3.control-label Phone:
+            
+            .col-lg-8
+                input.form-control(value= currentUser.phone || 'Not Specified', type='text' ng-model='user.phone')
+        
+        .form-group
+            h4.col-lg-3.control-label Password:
+            
+            .col-lg-8
+                input.form-control(value='0088844545', type='password' ng-model='user.password')
+                
+        .form-group
+            h4.col-lg-3.control-label Confirm Password:
+            
+            .col-lg-8
+                input.form-control(value='0088844545', type='password' ng-model='user.confirmPassword')   
+                
+        .form-group
+            .col-md-8
+                button(ng-click="vm.updateProfile(user)" class="btn btn-primary") Save Changes
+                a.btn.btn-default(href="/profile") Cancel
                  
 
                 

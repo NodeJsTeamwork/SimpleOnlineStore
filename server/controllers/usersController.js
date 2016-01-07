@@ -49,13 +49,18 @@ module.exports = {
             var updatedUserData = req.body;
             if (updatedUserData.password && updatedUserData.password.length > 0) {
                 updatedUserData.salt = encryption.generateSalt();
-                updatedUserData.hashPass = encryption.generateHashedPassword(newUserData.salt, newUserData.password);
+                updatedUserData.hashPass = encryption.generateHashedPassword(updatedUserData.salt, updatedUserData.password);
             }
-
-            User.update({_id: req.body._id}, updatedUserData, function() {
+            
+            usersData.updateUser({_id:req.body._id} , updatedUserData, function (err, user) {
+                if (err) {
+                    req.session.error = 'Passwords Do not Match';
+                }
+              
                 res.redirect('/profile');
-                return;
             })
+            
+            
         }
 
         else {
