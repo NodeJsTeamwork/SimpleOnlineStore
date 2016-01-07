@@ -2,9 +2,13 @@ doctype
 html
     head
         title Simple Onliine Shop
-        link(rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css")
-        link(rel="stylesheet" href="/lib/toastr/toastr.css")
+
+        link(rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type='text/css')
+        link(rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons")
+        link(rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css")
         link(rel="stylesheet" href="/css/app.css")
+        link(rel="stylesheet" href="/lib/bootstrap-material-design/dist/css/bootstrap-material-design.css")
+        link(rel="stylesheet" href="/lib/bootstrap-material-design/dist/css/ripples.min.css")
     body(ng-app="myApp")
         header.navbar.navbar-default
               .container
@@ -14,6 +18,8 @@ html
                       ul.nav.navbar-nav
                           li
                               a(href="/") Home
+                          li
+                              a(href="/products/add") Add product
                       ul.nav.navbar-nav.navbar-right
                           if(currentUser)
                               li
