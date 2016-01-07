@@ -13,6 +13,8 @@ module.exports = function(app) {
     app.post('/products', controllers.products.createProduct);
     
     app.get('/live-chat', controllers.liveChat.getChat);
+    
+    app.get('/profile', controllers.profile.getProfile);
 
     app.get('/', function (req, res) {
       res.render('index', {currentUser: req.user});
