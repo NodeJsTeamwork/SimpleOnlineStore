@@ -2,7 +2,7 @@ extends ../shared/layout
 
 block main-content
 	.container(ng-controller='ProductsController as vm')
-		div(class='well col-md-8')
+		div(class='well col-md-8 col-md-offset-2')
 			form.form-horizontal
 				fieldset
 					legend 
@@ -33,4 +33,5 @@ block main-content
 							input(type='number', class='form-control', placeholder='Price', id='price', ng-model='product.price')
 					.form-group
 						div(class='col-md-10 col-md-offset-2')
+							button(class='btn btn-primary', type='reset') Cancel
 							button(class='btn btn-primary', ng-click='vm.createProduct(product)') Submit

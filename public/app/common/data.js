@@ -1,7 +1,7 @@
 ﻿(function () {
     'use strict';
 
-    function data($http, $q, notifier, baseServiceUrl) {
+    function data($http, $q, baseServiceUrl) {
 
         function get(url, queryParams) {
             var defered = $q.defer();
@@ -11,7 +11,6 @@
                     defered.resolve(response.data);
                 }, function (error) {
                     error = getErrorMessage(error);
-                    notifier.error(error);
                     defered.reject(error);
                 });
 
@@ -26,7 +25,6 @@
                     defered.resolve(response.data);
                 }, function (error) {
                     error = getErrorMessage(error);
-                    notifier.error(error);
                     defered.reject(error);
                 });
 
@@ -41,7 +39,6 @@
                     defered.resolve(response.data);
                 }, function (error) {
                     error = getErrorMessage(error);
-                    notifier.error(error);
                     defered.reject(error);
                 });
 
@@ -68,5 +65,5 @@
     }
 
     angular.module('myApp.services')
-        .factory('data', ['$http', '$q', 'notifier', 'baseServiceUrl', data]);
+        .factory('data', ['$http', '$q', 'baseServiceUrl', data]);
 }());
