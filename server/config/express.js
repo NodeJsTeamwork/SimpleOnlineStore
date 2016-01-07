@@ -21,6 +21,7 @@ module.exports = function(app, config) {
       if (!auth.isInRole('admin')(req, res, next)) {
         req.session.error = 'You are not authorized!';
         res.redirect('/');
+        return;
       }
 
       next();
