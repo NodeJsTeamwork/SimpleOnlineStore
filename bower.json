@@ -18,6 +18,7 @@
     "toastr": "~2.1.2",
     "jquery": "~2.1.4",
     "angular": "~1.4.8",
-    "underscore": "~1.8.3"
+    "underscore": "~1.8.3",
+    "bootstrap-material-design": "~0.5.7"
   }
 }
