@@ -2,7 +2,8 @@
     'use strict';
     
      const CHANEL_NAME = 'online_support',
-     USER_NAME = $('#username').val() || 'guest';
+     USER_NAME = $('#currentUsername').text() || 'guest';
+     console.log(USER_NAME);
 
      var pubNub = PUBNUB.init({
         subscribe_key: 'sub-c-a9f92646-8baf-11e5-a2e7-0619f8945a4f',

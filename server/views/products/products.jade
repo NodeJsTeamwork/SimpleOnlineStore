@@ -1,0 +1,16 @@
+extends ../shared/layout
+
+block main-content
+	.container
+		table.table.table-stripped.table-hover
+			thead
+			tr
+				th Category
+				th Name
+				th Price
+			tbody
+				each product in collection
+					tr
+						td= product.category
+						td= product.name
+						td= product.price
