@@ -49,12 +49,18 @@ module.exports = {
             var updatedUserData = req.body;
             if (updatedUserData.password && updatedUserData.password.length > 0) {
                 updatedUserData.salt = encryption.generateSalt();
-                updatedUserData.hashPass = encryption.generateHashedPassword(newUserData.salt, newUserData.password);
+                updatedUserData.hashPass = encryption.generateHashedPassword(updatedUserData.salt, updatedUserData.password);
             }
-
-            User.update({_id: req.body._id}, updatedUserData, function() {
-                res.end();
+            
+            usersData.updateUser({_id:req.body._id} , updatedUserData, function (err, user) {
+                if (err) {
+                    req.session.error = 'Passwords Do not Match';
+                }
+              
+                res.redirect('/profile');
             })
+            
+            
         }
 
         else {
@@ -70,5 +76,14 @@ module.exports = {
       else {
         res.render('users/login');
       }
+    },
+    getProfile: function (req, res, next) {
+        if (!req.user) {
+            res.redirect('/');
+        }
+
+        else {
+            res.render('profile/profile', { currentUser: req.user });
+        }
     }
 };

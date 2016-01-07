@@ -4,6 +4,9 @@ var mongoose = require('mongoose'),
 module.exports.init = function () {
   var userSchema = mongoose.Schema({
       username: { type: String, require: '{PATH} is required', unique: true },
+      firstName: String,
+      lastName: String,
+      phone: String,
       salt: String,
       hashPass: String,
       products: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Product' }] ,
