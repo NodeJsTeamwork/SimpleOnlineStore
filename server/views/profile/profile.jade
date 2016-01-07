@@ -3,47 +3,47 @@ block main-content
     .jumbotron.text-center
         h2
           | Personal Info
-          
-        .form-group
-            h4.col-lg-3.control-label Username:
-            
-            .col-lg-8
-                input.form-control(value='#{currentUser.username}', type='text')
-        
-        .form-group
-            h4.col-lg-3.control-label First name:
-            
-            .col-lg-8
-                input.form-control(value= currentUser.firstName || 'Not Specified', type='text')
+        form(method="post", action="")  
+            .form-group
+                h4.col-lg-3.control-label Username:
                 
-        .form-group
-            h4.col-lg-3.control-label Last name:
+                .col-lg-8
+                    input.form-control(value='#{currentUser.username}', type='text')
             
-            .col-lg-8
-                input.form-control(value= currentUser.lastName || 'Not Specified', type='text')
+            .form-group
+                h4.col-lg-3.control-label First name:
                 
-        .form-group
-            h4.col-lg-3.control-label Phone:
-            
-            .col-lg-8
-                input.form-control(value= currentUser.phone || 'Not Specified', type='text')
-        
-        .form-group
-            h4.col-lg-3.control-label Password:
-            
-            .col-lg-8
-                input.form-control(value='0088844545', type='password')
+                .col-lg-8
+                    input.form-control(value= currentUser.firstName || 'Not Specified', type='text')
+                    
+            .form-group
+                h4.col-lg-3.control-label Last name:
                 
-        .form-group
-            h4.col-lg-3.control-label Confirm Password:
-            
-            .col-lg-8
-                input.form-control(value='0088844545', type='password')   
+                .col-lg-8
+                    input.form-control(value= currentUser.lastName || 'Not Specified', type='text')
+                    
+            .form-group
+                h4.col-lg-3.control-label Phone:
                 
-        .form-group
-            .col-md-8
-                input.btn.btn-primary(value='Save Changes', type='button')
-                a.btn.btn-default(href="/profile") Cancel
+                .col-lg-8
+                    input.form-control(value= currentUser.phone || 'Not Specified', type='text')
+            
+            .form-group
+                h4.col-lg-3.control-label Password:
+                
+                .col-lg-8
+                    input.form-control(value='0088844545', type='password')
+                    
+            .form-group
+                h4.col-lg-3.control-label Confirm Password:
+                
+                .col-lg-8
+                    input.form-control(value='0088844545', type='password')   
+                    
+            .form-group
+                .col-md-8
+                    button(type="submit" class="btn btn-primary") Save Changes
+                    a.btn.btn-default(href="/profile") Cancel
                  
 
                 

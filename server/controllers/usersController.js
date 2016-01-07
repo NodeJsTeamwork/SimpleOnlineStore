@@ -53,7 +53,8 @@ module.exports = {
             }
 
             User.update({_id: req.body._id}, updatedUserData, function() {
-                res.end();
+                res.redirect('/profile');
+                return;
             })
         }
 
@@ -70,5 +71,14 @@ module.exports = {
       else {
         res.render('users/login');
       }
+    },
+    getProfile: function (req, res, next) {
+        if (!req.user) {
+            res.redirect('/');
+        }
+
+        else {
+            res.render('profile/profile', { currentUser: req.user });
+        }
     }
 };
