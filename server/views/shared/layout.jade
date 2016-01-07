@@ -19,9 +19,10 @@ html
                           li
                               a(href="/") Home
                           li
-                              a(href="/products/add") Add product
-                          li
                               a(href="/live-chat") Live-Chat
+                          if (currentUser && currentUser.roles.indexOf('admin') > -1)
+                              li
+                                  a(href="/products/add") Add product
                       ul.nav.navbar-nav.navbar-right
                           if(currentUser)
                               li
