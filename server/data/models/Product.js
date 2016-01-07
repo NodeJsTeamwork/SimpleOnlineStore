@@ -6,7 +6,8 @@ module.exports.init = function () {
       name: String,
       description: String,
       price: Number,
-      timesBought: Number
+      timesBought: Number,
+      user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
   });
 
   var Product = mongoose.model('Product', productSchema);

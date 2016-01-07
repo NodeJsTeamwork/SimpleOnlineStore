@@ -6,6 +6,7 @@ module.exports.init = function () {
       username: { type: String, require: '{PATH} is required', unique: true },
       salt: String,
       hashPass: String,
+      products: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Product' }] ,
       roles: [String]
   });
 

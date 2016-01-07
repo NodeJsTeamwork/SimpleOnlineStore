@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    function ProductsController($location, productsService) {
+    function ProductsCreateController($location, productsService) {
     	var vm = this;
 
     	vm.createProduct = function (newProduct) {
@@ -13,5 +13,5 @@
     }
 
     angular.module('myApp.controllers')
-        .controller('ProductsController', ['$location', 'productsService', ProductsController]);
+        .controller('ProductsCreateController', ['$location', 'productsService', ProductsCreateController]);
 }()); 
