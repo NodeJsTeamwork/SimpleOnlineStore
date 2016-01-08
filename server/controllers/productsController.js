@@ -32,12 +32,23 @@ module.exports = {
 		})
 	},
     getProducts: function(req, res, next) {
-        Product.paginate({_id: 1}, {page: 1, limit: 1}, function (err, result) {
+        var userQuery = req.query.userId ? {user: req.query.userId} : {};
+        var page = req.query.page ? req.query.page : 1;
+        var limit = req.query.pageSize ? req.query.pageSize : 10;
+        var sortBy = {};
+        var type = req.query.type;
+        
+        if(req.query.sortBy) {
+            sortBy[req.query.sortBy] = type;
+        }
+        
+        console.log(req.query.sortBy);
+        Product.paginate(userQuery, {page: page, limit: limit, sort: sortBy}, function (err, result) {
             if (err) {
                 console.log('Products could not be loaded: ' + err);
             };
             
-            res.render('products/products', {currentUser: req.user, collection: result});
+            res.render('products/products', {currentUser: req.user, collection: result.docs});
         })
     }
 };

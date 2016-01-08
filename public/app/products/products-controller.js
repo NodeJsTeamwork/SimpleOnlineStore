@@ -9,26 +9,8 @@
         vm.request.page = getParameterByName('page') ? (+getParameterByName('page')) : 1;
         vm.request.pageSize = getParameterByName('pageSize') ? (+getParameterByName('pageSize')) : 10;
         vm.request.sortBy = getParameterByName('sortBy') ? getParameterByName('sortBy') : 'price';
-        vm.request.type = getParameterByName('type') ? getParameterByName('type') : 'ascending';
-        vm.request.userId = getParameterByName('userId') ? getParameterByName('userId') : null;
-        
-        vm.prevPage = function () {
-            if (vm.request.page == 1) {
-                return;
-            }
-
-            vm.request.page--;
-            vm.filterProducts();
-        }
-
-        vm.nextPage = function () {
-            if (!vm.products || vm.products.length == 0) {
-                return;
-            }
-
-            vm.request.page++;
-            vm.filterProducts();
-        }
+        vm.request.type = getParameterByName('type') ? getParameterByName('type') : 'asc';
+        vm.request.userId = getParameterByName('userId') ? getParameterByName('userId') : null;      
 
         vm.filterProducts = function () {
             var newLocation = currentPath
