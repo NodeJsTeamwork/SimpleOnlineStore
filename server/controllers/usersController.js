@@ -103,5 +103,12 @@ module.exports = {
             
             res.render('profile/profile', {currentUser: req.user, userToUpdate: user});   
         });
-    }
+    },
+    getCart: function (req, res, next) {
+        if (!req.user) {
+            res.redirect('/');
+        } else {
+            res.render('cart/cart', { currentUser: req.user, cart: req.user.products});
+        }
+    },
 };

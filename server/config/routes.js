@@ -18,6 +18,7 @@ module.exports = function(app) {
     app.get('/live-chat', controllers.liveChat.getChat);
     
     app.get('/profile', controllers.users.getProfile);
+    app.get('/cart', controllers.users.getCart);
     app.get('/admin/profile', controllers.users.getProfileByAdmin);
     app.post('/profile', controllers.users.updateUser);
 
