@@ -15,6 +15,7 @@ block main-content
 				each user in users
 					tr
 						td
+							a(href="/admin/profile?id=" + user._id)= user.username
 						td= user.firstName
 						td= user.lastName
 						td= user.phone
