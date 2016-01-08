@@ -1,10 +1,9 @@
-var encryption = require('../utilities/cripto');
-var usersData = require('../data/usersData');
+var encryption = require('../utilities/cripto'),
+    usersData = require('../data/usersData'),
+    User = require('mongoose').model('User');
 
 module.exports = {
     getRegister: function (req, res, next) {
-
-      // if the user is logged in cannot see the register page
       if (req.user) {
         res.redirect('/');
       }
@@ -51,25 +50,21 @@ module.exports = {
                 updatedUserData.salt = encryption.generateSalt();
                 updatedUserData.hashPass = encryption.generateHashedPassword(updatedUserData.salt, updatedUserData.password);
             }
-            
-            usersData.updateUser({_id:req.body._id} , updatedUserData, function (err, user) {
-                if (err) {
-                    req.session.error = 'Passwords Do not Match';
-                }
-              
+                      
+            if (updatedUserData.password !== updatedUserData.confirmPassword) {     
+                req.session.error = 'Passwords do not match!';      
                 res.redirect('/profile');
-            })
-            
-            
+            } else {
+                usersData.updateUser({_id:req.body._id} , updatedUserData, function (err, user) {
+                    res.redirect('/profile');
+                })     
+            }           
         }
-
         else {
             res.send({reason: 'You do not have permissions!'})
         }
     },
     getLogin: function (req, res, next) {
-
-      // if the user is logged in cannot see the login page
       if (req.user) {
         res.redirect('/');
       }
@@ -80,10 +75,33 @@ module.exports = {
     getProfile: function (req, res, next) {
         if (!req.user) {
             res.redirect('/');
+        } else {
+            res.render('profile/profile', { currentUser: req.user, userToUpdate: req.user});
         }
-
-        else {
-            res.render('profile/profile', { currentUser: req.user });
+    },
+    getAll: function (req, res, next) {
+        User.find().exec(function(err, users) {
+            if (err) {
+                console.log('Users could not be loaded: ' + err);
+            };
+            
+            res.render('users/users', {currentUser: req.user, users: users});  
+        });
+    },
+    getProfileByAdmin: function (req, res, next) {
+        var userId = req.query.id;
+        if (!userId) {
+            res.redirect('/');
         }
+        
+        User.findById(userId, function(err, user) {
+            if (err) {
+                console.log('User could not be loaded: ' + err);
+                req.session.error = 'User with this id does not exist';
+                res.redirect('/');
+            };
+            
+            res.render('profile/profile', {currentUser: req.user, userToUpdate: user});   
+        });
     }
 };

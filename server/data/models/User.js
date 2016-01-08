@@ -2,7 +2,7 @@ var mongoose = require('mongoose'),
     encryption = require('../../utilities/cripto');
 
 module.exports.init = function () {
-  var userSchema = mongoose.Schema({
+  var userSchema = new mongoose.Schema({
       username: { type: String, require: '{PATH} is required', unique: true },
       firstName: String,
       lastName: String,
