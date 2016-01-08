@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 module.exports.init = function () {
-  var productSchema = mongoose.Schema({
+  var productSchema = new mongoose.Schema({
       category: String,
       name: String,
       description: String,

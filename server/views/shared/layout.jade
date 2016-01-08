@@ -22,7 +22,16 @@ html
                               a(href="/live-chat") Live-Chat
                           if (currentUser && currentUser.roles.indexOf('admin') > -1)
                               li
-                                  a(href="/products/admin/add") Add product
+                                  a(href='bootstrap-elements.html' data-target='#' class='dropdown-toggle' data-toggle='dropdown') Admin Panel
+                                      b.caret
+                                  ul.dropdown-menu
+                                      li
+                                          a(href="/products/admin/add") Add product
+                                      li
+                                          a(href="/products/admin/my") My products
+                                      li.divider
+                                      li
+                                          a(href="/users") Users
                       ul.nav.navbar-nav.navbar-right
                           if(currentUser)
                               li
