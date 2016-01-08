@@ -2,10 +2,10 @@
     'use strict';
 
     function productsService(data) {
-        var PRODUCTS_URL = 'products';
+        var PRODUCTS_URL = 'admin';
 
         function createProduct(product) {
-            return data.post(PRODUCTS_URL + '/admin/add', product);
+            return data.post(PRODUCTS_URL + '/products/add', product);
         };
 
         return {

@@ -25,4 +25,21 @@ module.exports.init = function () {
   })
 
   var User = mongoose.model('User', userSchema);
+  
+  User.find({}).exec(function(err, collection) {
+        if (err) {
+            console.log('Cannot find users: ' + err);
+            return;
+        }
+
+        if (collection.length === 0) {
+            var salt;
+            var hashedPwd;
+
+            salt = encryption.generateSalt();
+            hashedPwd = encryption.generateHashedPassword(salt, '1234');
+            User.create({username: 'stamat', salt: salt, hashPass: hashedPwd, roles: ['admin']});
+            
+        }
+    });
 };
