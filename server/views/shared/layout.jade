@@ -17,9 +17,11 @@ html
                   .navbar-collapse.collapse
                       ul.nav.navbar-nav
                           li
-                              a(href="/") Home
+                              a(href="/") Home   
+                                  i.material-icons home
                           li
-                              a(href="/live-chat") Live-Chat
+                              a(href="/live-chat") Live-Chat   
+                                  i.material-icons chat
                           if (currentUser && currentUser.roles.indexOf('admin') > -1)
                               li
                                   a(href='bootstrap-elements.html' data-target='#' class='dropdown-toggle' data-toggle='dropdown') Admin Panel
@@ -36,14 +38,18 @@ html
                           if(currentUser)
                               li
                                 a(href="/profile") Hello 
-                                    span#currentUsername #{currentUser.username}
+                                    span#currentUsername #{currentUser.username}   
+                                    i.material-icons info
                               li
-                                a(href="/logout") Logout
+                                a(href="/logout") Logout   
+                                    i.material-icons power_settings_new
                            else
                               li
-                                a(href="/register") Register
+                                a(href="/register") Register   
+                                    i.material-icons person_add
                               li
-                                a(href="/login") Login
+                                a(href="/login") Login   
+                                    i.material-icons mood
         .container
           if (errorMessage)
             .alert.alert-danger #{errorMessage}

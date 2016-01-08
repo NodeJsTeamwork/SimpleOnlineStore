@@ -1,0 +1,26 @@
+extends ../shared/layout
+
+block main-content
+	.container
+		h1 Users
+		table.table.table-stripped.table-hover
+			thead
+			tr
+				th Username
+				th First Name
+				th Last Name
+				th Phone
+				th IsAdmin
+			tbody
+				each user in users
+					tr
+						td= user.username
+						td= user.firstName
+						td= user.lastName
+						td= user.phone
+						if(user.roles.indexOf('admin') > -1)
+							td
+								i.material-icons check_circle
+						else
+							td
+								i.material-icons block

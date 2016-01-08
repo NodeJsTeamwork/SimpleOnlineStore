@@ -1,5 +1,6 @@
-var encryption = require('../utilities/cripto');
-var usersData = require('../data/usersData');
+var encryption = require('../utilities/cripto'),
+    usersData = require('../data/usersData'),
+    User = require('mongoose').model('User');
 
 module.exports = {
     getRegister: function (req, res, next) {
@@ -85,5 +86,14 @@ module.exports = {
         else {
             res.render('profile/profile', { currentUser: req.user });
         }
+    },
+    getAll: function (req, res, next) {
+        User.find().exec(function(err, users) {
+            if (err) {
+                console.log('Users could not be loaded: ' + err);
+            };
+            
+            res.render('users/users', {currentUser: req.user, users: users});  
+        });
     }
 };

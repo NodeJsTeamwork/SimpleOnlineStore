@@ -13,6 +13,8 @@ module.exports = function(app) {
     app.post('/products/admin/add', controllers.products.createProduct);
     app.get('/products/admin/my', controllers.products.getProductsByUser);
     
+    app.get('/users', controllers.users.getAll);
+    
     app.get('/live-chat', controllers.liveChat.getChat);
     
     app.get('/profile', controllers.users.getProfile);
