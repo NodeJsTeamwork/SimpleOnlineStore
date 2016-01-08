@@ -1,5 +1,6 @@
 var mongoose = require('mongoose'),
-    encryption = require('../../utilities/cripto');
+    encryption = require('../../utilities/cripto'),
+    mongoosePaginate = require('mongoose-paginate');
 
 module.exports.init = function () {
   var userSchema = new mongoose.Schema({
@@ -12,6 +13,8 @@ module.exports.init = function () {
       products: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Product' }] ,
       roles: [String]
   });
+  
+  userSchema.plugin(mongoosePaginate);
 
   userSchema.method({
       authenticate: function(password) {

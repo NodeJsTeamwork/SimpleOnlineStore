@@ -1,6 +1,8 @@
 var productsData = require('../data/productsData'),
 	User = require('mongoose').model('User'),
-	usersData = require('../data/usersData');
+    Product = require('mongoose').model('Product'),
+	usersData = require('../data/usersData'),
+    mongoosePaginate = require('mongoose-paginate');
 
 module.exports = {
 	getAdd: function (req, res, next) {
@@ -29,13 +31,13 @@ module.exports = {
 
 		})
 	},
-	getProductsByUser: function(req, res, next) {
-        User.findById(req.user._id).populate('products').exec(function(err, user) {
+    getProducts: function(req, res, next) {
+        Product.paginate({_id: 1}, {page: 1, limit: 1}, function (err, result) {
             if (err) {
                 console.log('Products could not be loaded: ' + err);
             };
             
-            res.render('products/products', {currentUser: req.user, collection: user.products});
+            res.render('products/products', {currentUser: req.user, collection: result});
         })
     }
 };

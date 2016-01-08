@@ -11,7 +11,7 @@ module.exports = function(app) {
 
     app.get('/admin/products/add', controllers.products.getAdd);
     app.post('/admin/products/add', controllers.products.createProduct);
-    app.get('/admin/products/my', controllers.products.getProductsByUser);
+    app.get('/products', controllers.products.getProducts);
     
     app.get('/admin/users', controllers.users.getAll);
     
