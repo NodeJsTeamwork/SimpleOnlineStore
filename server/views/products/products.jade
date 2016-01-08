@@ -9,7 +9,7 @@ block main-content
 					| Sort by
 				.col-md-10
 					select(class='form-control', id='sortby', ng-model='vm.request.sortBy')
-						option(value='rating') Rating
+						option(value='name') Name
 						option(value='price') Price
 		.col-md-3
 			.form-group
@@ -17,8 +17,8 @@ block main-content
 					| Type
 				.col-md-10
 					select(class='form-control', id='type', ng-model='vm.request.type')
-						option(value='ascending') Ascending
-						option(value='descending') Descending
+						option(value='asc') Ascending
+						option(value='desc') Descending
 		.col-md-2
 			.form-group
 				label(class='col-md-3 control-label', for='pageSize')
