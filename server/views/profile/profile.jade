@@ -1,6 +1,6 @@
 extends ../shared/layout
 block main-content
-    .jumbotron.text-center(ng-controller='UsersController as vm' ng-init="user=#{JSON.stringify(currentUser)}")
+    .jumbotron.text-center(ng-controller='UsersController as vm' ng-init="user=#{JSON.stringify(userToUpdate)}")
         h2
           | Personal Info
           
@@ -8,25 +8,25 @@ block main-content
             h4.col-lg-3.control-label Username:
             
             .col-lg-8
-                input.form-control(value='#{currentUser.username}', type='text' ng-model='user.username')
+                input.form-control(value='#{userToUpdate.username}', type='text' ng-model='user.username')
         
         .form-group
             h4.col-lg-3.control-label First name:
             
             .col-lg-8
-                input.form-control(value= currentUser.firstName || 'Not Specified', type='text' ng-model='user.firstName')
+                input.form-control(value= userToUpdate.firstName || 'Not Specified', type='text' ng-model='user.firstName')
                 
         .form-group
             h4.col-lg-3.control-label Last name:
             
             .col-lg-8
-                input.form-control(value= currentUser.lastName || 'Not Specified', type='text' ng-model='user.lastName')
+                input.form-control(value= userToUpdate.lastName || 'Not Specified', type='text' ng-model='user.lastName')
                 
         .form-group
             h4.col-lg-3.control-label Phone:
             
             .col-lg-8
-                input.form-control(value= currentUser.phone || 'Not Specified', type='text' ng-model='user.phone')
+                input.form-control(value= userToUpdate.phone || 'Not Specified', type='text' ng-model='user.phone')
         
         .form-group
             h4.col-lg-3.control-label Password:
