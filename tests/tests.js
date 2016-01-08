@@ -57,7 +57,7 @@ describe('homepage', function () {
 
     it('Add poduct page should redirect if user is not admin', function (done) {
         chai.request('http://localhost:3030')
-            .get('/products/admin/add')
+            .get('/admin/products/add')
             .redirects(0)
             .end(function (err, res) {
                 expect(res).to.have.status(302);
@@ -67,7 +67,7 @@ describe('homepage', function () {
 
     it('My poducts page should redirect if user is not admin', function (done) {
         chai.request('http://localhost:3030')
-            .get('/products/admin/my')
+            .get('/admin/products/my')
             .redirects(0)
             .end(function (err, res) {
                 expect(res).to.have.status(302);
