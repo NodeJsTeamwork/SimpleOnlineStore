@@ -42,7 +42,6 @@ module.exports = {
             sortBy[req.query.sortBy] = type;
         }
         
-        console.log(req.query.sortBy);
         Product.paginate(userQuery, {page: page, limit: limit, sort: sortBy}, function (err, result) {
             if (err) {
                 console.log('Products could not be loaded: ' + err);

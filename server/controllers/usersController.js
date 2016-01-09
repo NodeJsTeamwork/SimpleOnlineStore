@@ -80,13 +80,22 @@ module.exports = {
         }
     },
     getAll: function (req, res, next) {
-        User.find().exec(function (err, users) {
+        var page = req.query.page ? req.query.page : 1;
+        var limit = req.query.pageSize ? req.query.pageSize : 10;
+        var sortBy = {};
+        var type = req.query.type;
+        
+        if(req.query.sortBy) {
+            sortBy[req.query.sortBy] = type;
+        }
+        
+        User.paginate({}, {page: page, limit: limit, sort: sortBy}, function (err, result) {
             if (err) {
                 console.log('Users could not be loaded: ' + err);
             };
-
-            res.render('users/users', { currentUser: req.user, users: users });
-        });
+            
+            res.render('users/users', { currentUser: req.user, users: result.docs });
+        })
     },
     getProfileByAdmin: function (req, res, next) {
         var userId = req.query.id;
