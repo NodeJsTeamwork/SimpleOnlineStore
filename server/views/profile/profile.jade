@@ -1,6 +1,6 @@
 extends ../shared/layout
 block main-content
-    .jumbotron.text-center(ng-controller='UsersController as vm' ng-init="user=#{JSON.stringify(userToUpdate)}")
+    .jumbotron.text-center(ng-controller='UsersUpdateController as vm' ng-init="user=#{JSON.stringify(userToUpdate)}")
         h2
           | Personal Info
           

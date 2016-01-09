@@ -1,5 +1,6 @@
 var mongoose = require('mongoose'),
-    encryption = require('../../utilities/cripto');
+    encryption = require('../../utilities/cripto'),
+    mongoosePaginate = require('mongoose-paginate');
 
 module.exports.init = function () {
   var userSchema = new mongoose.Schema({
@@ -12,6 +13,8 @@ module.exports.init = function () {
       products: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Product' }] ,
       roles: [String]
   });
+  
+  userSchema.plugin(mongoosePaginate);
 
   userSchema.method({
       authenticate: function(password) {
@@ -25,4 +28,21 @@ module.exports.init = function () {
   })
 
   var User = mongoose.model('User', userSchema);
+  
+  User.find({}).exec(function(err, collection) {
+        if (err) {
+            console.log('Cannot find users: ' + err);
+            return;
+        }
+
+        if (collection.length === 0) {
+            var salt;
+            var hashedPwd;
+
+            salt = encryption.generateSalt();
+            hashedPwd = encryption.generateHashedPassword(salt, '1234');
+            User.create({username: 'stamat', salt: salt, hashPass: hashedPwd, roles: ['admin']});
+            
+        }
+    });
 };

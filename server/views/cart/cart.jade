@@ -1,0 +1,27 @@
+extends ../shared/layout
+
+block main-content
+	.container
+		table.table.table-stripped.table-hover
+			thead
+			tr
+				th Category
+				th Name
+				th Price
+			tbody
+				if (cart.length == 0)
+					tr
+						td
+						td The Cart Empty
+						td
+				each product in cart
+					tr
+						td= product.category
+						td= product.name
+						td= product.price
+				tr
+					td Total:
+					td 
+					td 300$
+        
+		a.btn.btn-primary.pull-right Chechout

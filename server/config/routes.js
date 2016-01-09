@@ -11,13 +11,14 @@ module.exports = function(app) {
 
     app.get('/admin/products/add', controllers.products.getAdd);
     app.post('/admin/products/add', controllers.products.createProduct);
-    app.get('/admin/products/my', controllers.products.getProductsByUser);
+    app.get('/products', controllers.products.getProducts);
     
     app.get('/admin/users', controllers.users.getAll);
     
     app.get('/live-chat', controllers.liveChat.getChat);
     
     app.get('/profile', controllers.users.getProfile);
+    app.get('/cart', controllers.users.getCart);
     app.get('/admin/profile', controllers.users.getProfileByAdmin);
     app.post('/profile', controllers.users.updateUser);
 
