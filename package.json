@@ -20,6 +20,8 @@
     "mongoose": "^4.3.4",
     "mongoose-paginate": "^5.0.0",
     "passport": "^0.3.2",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "sinon": "^1.17.2",
+    "sinon-chai": "^2.8.0"
   }
 }
