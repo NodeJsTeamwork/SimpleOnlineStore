@@ -1,7 +1,7 @@
 doctype
 html
     head
-        title Simple Onliine Shop
+        title Simple Online Shop
 
         link(rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type='text/css')
         link(rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons")
@@ -36,6 +36,9 @@ html
                                           a(href="/admin/users") Users
                       ul.nav.navbar-nav.navbar-right
                           if(currentUser)
+                              li
+                                  a(href="/cart") Cart
+                                      i.material-icons add_shopping_cart
                               li
                                 a(href="/profile") Hello 
                                     span#currentUsername #{currentUser.username}   

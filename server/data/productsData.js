@@ -1,4 +1,5 @@
-var Product = require('mongoose').model('Product');
+var mongoose=require('mongoose'),
+    Product = mongoose.model('Product');
 
 module.exports = {
   createProduct: function (product, callback) {
@@ -10,5 +11,9 @@ module.exports = {
              .sort('name')
              .limit(10)
              .exec(callback);
+  },
+  getProductById: function(id, callback){
+    var idToSearch=mongoose.Types.ObjectId(id);
+    Product.findById(idToSearch, callback);
   }
 };

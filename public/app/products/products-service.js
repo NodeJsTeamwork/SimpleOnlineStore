@@ -6,7 +6,7 @@
 
         function createProduct(product) {
             return data.post(PRODUCTS_URL + '/products/add', product);
-        };
+        }
 
         return {
             createProduct: createProduct
