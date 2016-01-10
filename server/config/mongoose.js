@@ -1,6 +1,8 @@
 var mongoose = require('mongoose'),
   UserModel = require('../data/models/User'),
-  ProductModel = require('../data/models/Product');
+  ProductModel = require('../data/models/Product'),
+  CartModel = require('../data/models/Cart'),
+  OrderModel = require('../data/models/Order');
 
 module.exports = function(config) {
     mongoose.connect(config.db);
@@ -19,6 +21,8 @@ module.exports = function(config) {
         console.log('Database error: ' + err);
     });
 
-    UserModel.init();
     ProductModel.init();
+    CartModel.init();
+    OrderModel.init();
+    UserModel.init();
 };

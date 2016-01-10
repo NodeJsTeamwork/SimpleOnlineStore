@@ -11,6 +11,7 @@ module.exports = function(app) {
 
     app.get('/admin/products/add', controllers.products.getAdd);
     app.post('/admin/products/add', controllers.products.createProduct);
+    app.get('/cart/add', controllers.products.addCart);
     app.get('/products', controllers.products.getProducts);
     
     app.get('/admin/users', controllers.users.getAll);
@@ -18,7 +19,9 @@ module.exports = function(app) {
     app.get('/live-chat', controllers.liveChat.getChat);
     
     app.get('/profile', controllers.users.getProfile);
+    app.post('/admin/cart/add', controllers.users.addItemToCart);
     app.get('/cart', controllers.users.getCart);
+    app.get('/checkout', controllers.users.getCheckout);
     app.get('/admin/profile', controllers.users.getProfileByAdmin);
     app.post('/profile', controllers.users.updateUser);
 

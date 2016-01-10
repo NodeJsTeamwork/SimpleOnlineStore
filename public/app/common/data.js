@@ -19,7 +19,8 @@
 
         function post(url, postData) {
             var defered = $q.defer();
-
+            console.log('wtf');
+            console.log(postData);
             $http.post(baseServiceUrl + '/' + url, postData)
                 .then(function (response) {
                     defered.resolve(response.data);
@@ -51,7 +52,7 @@
                 error = error[Object.keys(error)[0]][0];
             }
             else {
-                error = response.data.Message;
+                error = response.data;
             }
 
             return error;

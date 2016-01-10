@@ -12,7 +12,7 @@ block main-content
 				if (cart.length == 0)
 					tr
 						td
-						td The Cart Empty
+						td The Cart is Empty
 						td
 				each product in cart
 					tr
@@ -21,7 +21,7 @@ block main-content
 						td= product.price
 				tr
 					td Total:
-					td 
-					td 300$
-        
-		a.btn.btn-primary.pull-right Chechout
+					td
+					td= cart.total
+
+		a.btn.btn-primary.pull-right Checkout

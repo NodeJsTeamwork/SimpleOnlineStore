@@ -33,7 +33,7 @@ module.exports = {
                 req.logIn(user, function (err) {
                     if (err) {
                         res.status(400);
-                        return res.send({ reason: err.toString() });
+                        return res.send({reason: err.toString()});
                     }
 
                     else {
@@ -41,7 +41,7 @@ module.exports = {
                     }
                 });
             });
-        };
+        }
     },
     updateUser: function (req, res, next) {
         if (req.user._id == req.body._id || req.user.roles.indexOf('admin') > -1) {
@@ -55,13 +55,13 @@ module.exports = {
                 req.session.error = 'Passwords do not match!';
                 res.redirect('/profile');
             } else {
-                usersData.updateUser({ _id: req.body._id }, updatedUserData, function (err, user) {
+                usersData.updateUser({_id: req.body._id}, updatedUserData, function (err, user) {
                     res.redirect('/profile');
                 })
             }
         }
         else {
-            res.send({ reason: 'You do not have permissions!' })
+            res.send({reason: 'You do not have permissions!'})
         }
     },
     getLogin: function (req, res, next) {
@@ -76,7 +76,7 @@ module.exports = {
         if (!req.user) {
             res.redirect('/');
         } else {
-            res.render('profile/profile', { currentUser: req.user, userToUpdate: req.user });
+            res.render('profile/profile', {currentUser: req.user, userToUpdate: req.user});
         }
     },
     getAll: function (req, res, next) {
@@ -84,17 +84,17 @@ module.exports = {
         var limit = req.query.pageSize ? req.query.pageSize : 10;
         var sortBy = {};
         var type = req.query.type;
-        
-        if(req.query.sortBy) {
+
+        if (req.query.sortBy) {
             sortBy[req.query.sortBy] = type;
         }
-        
+
         User.paginate({}, {page: page, limit: limit, sort: sortBy}, function (err, result) {
             if (err) {
                 console.log('Users could not be loaded: ' + err);
-            };
-            
-            res.render('users/users', { currentUser: req.user, users: result.docs });
+            }
+
+            res.render('users/users', {currentUser: req.user, users: result.docs});
         })
     },
     getProfileByAdmin: function (req, res, next) {
@@ -108,25 +108,62 @@ module.exports = {
                 console.log('User could not be loaded: ' + err);
                 req.session.error = 'User with this id does not exist';
                 res.redirect('/');
-            };
+            }
 
-            res.render('profile/profile', { currentUser: req.user, userToUpdate: user });
+            res.render('profile/profile', {currentUser: req.user, userToUpdate: user});
         });
     },
     getCart: function (req, res, next) {
         if (!req.user) {
             res.redirect('/');
         } else {
+            User.findById({_id: req.user._id})
+                .populate('cart')
+                .exec(function (err, user) {
+                    if (err) {
+                        console.log('Users could not be loaded: ' + err);
+                    }
+                    var cart = user.cart,
+                        sum = 0,
+                        i;
+                    for (i = 0; i < cart.length; i += 1) {
+                        sum += cart[i].price;
+                    }
+                    cart['total'] = sum;
+                    console.log(cart.total);
+                    res.render('cart/cart', {currentUser: req.user, cart: cart});
+                });
+        }
+    },
+    addItemToCart: function (req, res, next) {
+        var newProductData = req.body;
+        newProductData.user = req.user._id;
+        usersData.updateUser({_id: req.user._id}, {$push: {"cart": newProductData.itemId}}, function (err, user) {
+            if (err) {
+                console.log("ERROR", err);
+                req.session.error = 'Unable to add product';
+            }
+            console.log('Updated!!!', user);
+            res.redirect('/');
+        });
+
+
+    },
+    getCheckout: function (req, res, next) {
+        if (!req.user) {
+            res.redirect('/');
+        } else {
             console.log(req.user.products);
-            User.findById({ _id: req.user._id })
+            User.findById({_id: req.user._id})
                 .populate('products')
-            .exec(function (err, user) {
-                if (err) {
-                    console.log('Users could not be loaded: ' + err);
-                };
-                
-                res.render('cart/cart', { currentUser: req.user, cart: user.products });
-            });
+                .exec(function (err, user) {
+                    if (err) {
+                        console.log('Users could not be loaded: ' + err);
+                    }
+                    ;
+
+                    res.render('cart/cart', {currentUser: req.user, cart: user.products});
+                });
         }
     }
-    };
+};
