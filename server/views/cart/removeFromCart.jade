@@ -13,7 +13,8 @@ block main-content
             tbody
                 each product in collection
                     tr
-                            td= product.category
-                            td= product.name
-                            td= product.price
-                            td(class='btn',ng-click='vm.addToCart()') Add To Cart
+                        td= product.category
+                        td= product.name
+                        td= product.price
+                        td
+                            a(class='btn',ng-click='vm.removeFromCart()') Remove from Cart

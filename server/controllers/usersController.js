@@ -1,5 +1,6 @@
 var encryption = require('../utilities/cripto'),
     usersData = require('../data/usersData'),
+    productsData = require('../data/productsData'),
     User = require('mongoose').model('User');
 
 module.exports = {
@@ -130,9 +131,22 @@ module.exports = {
                         sum += cart[i].price;
                     }
                     cart['total'] = sum;
-                    console.log(cart.total);
                     res.render('cart/cart', {currentUser: req.user, cart: cart});
                 });
+        }
+    },
+    getAddCartConfirmation: function (req, res, next) {
+        if (!req.user) {
+            res.redirect('/');
+        } else {
+            var product = req.query.itemId ? {id: req.query.itemId} : {};
+            productsData.getProductById(product.id, function (err, product) {
+                if (err) {
+                    console.log('Product could not be loaded: ' + err);
+                }
+                var collection = [product];
+                res.render('cart/addToCart', {currentUser: req.user, collection: collection});
+            });
         }
     },
     addItemToCart: function (req, res, next) {
@@ -141,13 +155,23 @@ module.exports = {
         usersData.updateUser({_id: req.user._id}, {$push: {"cart": newProductData.itemId}}, function (err, user) {
             if (err) {
                 console.log("ERROR", err);
-                req.session.error = 'Unable to add product';
+                req.session.error = 'Unable to add to cart';
             }
             console.log('Updated!!!', user);
-            res.redirect('/');
+            res.redirect('/cart');
         });
-
-
+    },
+    removeItemFromCart: function (req, res, next) {
+        var newProductData = req.body;
+        newProductData.user = req.user._id;
+        usersData.updateUser({_id: req.user._id}, {$pop: {"cart": newProductData.itemId}}, function (err, user) {
+            if (err) {
+                console.log("ERROR", err);
+                req.session.error = 'Unable to remove product';
+            }
+            console.log('Updated!!!', user);
+            res.redirect('/cart');
+        });
     },
     getCheckout: function (req, res, next) {
         if (!req.user) {
@@ -160,7 +184,6 @@ module.exports = {
                     if (err) {
                         console.log('Users could not be loaded: ' + err);
                     }
-                    ;
 
                     res.render('cart/cart', {currentUser: req.user, cart: user.products});
                 });

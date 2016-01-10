@@ -8,13 +8,8 @@
             return data.post(PRODUCTS_URL + '/products/add', product);
         }
 
-        function addToCart(productId) {
-            return data.post(PRODUCTS_URL + '/cart/add', productId);
-        }
-
         return {
-            createProduct: createProduct,
-            addToCart: addToCart
+            createProduct: createProduct
         }
     }
 

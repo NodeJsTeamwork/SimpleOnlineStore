@@ -50,7 +50,7 @@ module.exports = {
             res.render('products/products', {currentUser: req.user, collection: result.docs});
         })
     },
-    addCart: function (req, res, next) {
+    removeFromCart: function (req, res, next) {
         if (!req.user) {
             res.redirect('/');
         } else {
@@ -60,7 +60,7 @@ module.exports = {
                     console.log('Product could not be loaded: ' + err);
                 }
                 var collection = [product];
-                res.render('cart/addToCart', {currentUser: req.user, collection:collection});
+                res.render('cart/removeFromCart', {currentUser: req.user, collection: collection});
             });
         }
     }
