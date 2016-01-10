@@ -1,7 +1,6 @@
 var mongoose = require('mongoose'),
   UserModel = require('../data/models/User'),
   ProductModel = require('../data/models/Product'),
-  CartModel = require('../data/models/Cart'),
   OrderModel = require('../data/models/Order');
 
 module.exports = function(config) {
@@ -22,7 +21,6 @@ module.exports = function(config) {
     });
 
     ProductModel.init();
-    CartModel.init();
     OrderModel.init();
     UserModel.init();
 };
