@@ -11,6 +11,8 @@ module.exports.init = function () {
       salt: String,
       hashPass: String,
       products: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Product' }] ,
+      cart: { type: mongoose.Schema.Types.ObjectId, ref: 'Cart' } ,
+      orders: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Order' }] ,
       roles: [String]
   });
   

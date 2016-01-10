@@ -10,5 +10,5 @@ module.exports.init = function () {
 
     productSchema.plugin(mongoosePaginate);
 
-    var Product = mongoose.model('Cart', productSchema);
+    var Product = mongoose.model('Order', productSchema);
 };
