@@ -46,12 +46,12 @@ block main-content
 			<br>
 			table.table.table-stripped.table-hover
 				thead
-				tr
-					th Category
-					th Name
-					th Price
-					th Image
-					th 
+					tr
+						th Category
+						th Name
+						th Price
+						th Image
+						th
 				tbody
 					each product in collection
 						tr
@@ -61,4 +61,4 @@ block main-content
 							td(style='vertical-align:middle')
 								img(src=product.image class='image_table img-rounded')
 							td(style='vertical-align:middle')
-								a(class='btn btn-sm',href='/cart/add?itemId='+product.id) Add To Cart
+								a(class='btn btn-sm',href='/product?itemId='+product.id) Product Details
