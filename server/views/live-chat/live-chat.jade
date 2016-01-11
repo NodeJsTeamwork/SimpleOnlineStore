@@ -7,5 +7,10 @@ block main-content
         .panel-body
           .row
             #messagesBox.col-md-12
+              each message in messages
+                #holemsg
+                  span.chat-username= message.username + ': ' 
+                  span#textmessage= message.message
+                  span.chat-date= message.time
           .row
-            textarea#messageToSend.col-md-12(placeholder='Message')
+            input(placeholder='Message' ng-model="vm.messageToSend" ng-keypress="vm.sendMessage($event)" type="text" class="col-md-12")
