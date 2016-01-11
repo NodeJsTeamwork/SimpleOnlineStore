@@ -1,0 +1,33 @@
+extends ../shared/layout
+
+block main-content
+    div(class='container' ng-controller='CartController as vm')
+        if(inCart)
+            h1 Are you sure you want to remove this product from your cart?
+        else
+            h1 Product details
+
+        table.table.table-stripped.table-hover
+            thead
+            tr
+                th Category
+                th Name
+                th Price
+                th Picture
+                if(collection[0].description)
+                    th Description
+                th
+            tbody
+                each product in collection
+                    tr
+                            td= product.category
+                            td= product.name
+                            td= product.price
+                            td= product.image
+                            if(product.description)
+                                td= product.description
+                            if(currentUser)
+                                if(!inCart)
+                                    td(class='btn',ng-click='vm.addToCart()') Add To Cart
+                                if(inCart)
+                                    td(class='btn',ng-click='vm.removeFromCart()') Remove From Cart
