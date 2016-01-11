@@ -6,6 +6,7 @@ module.exports.init = function () {
       category: String,
       name: String,
       description: String,
+      image: String,
       price: Number,
       timesBought: Number,
       user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
