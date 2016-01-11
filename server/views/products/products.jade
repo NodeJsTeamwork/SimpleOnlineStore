@@ -2,7 +2,7 @@ extends ../shared/layout
 
 block main-content
 	div(class='container' ng-controller='ProductsController as vm')
-		h1 Products
+		h1= (type + 's') || Products
 		.col-md-3
 			.form-group
 				label(class='col-md-2 control-label', for='sortby')

@@ -14,6 +14,7 @@ module.exports = function(app) {
 
     app.get('/cart/remove', controllers.products.removeFromCart);
     app.get('/products', controllers.products.getProducts);
+    app.get('/products/:name', controllers.products.getSpecificProducts);
     
     app.get('/admin/users', controllers.users.getAll);
     
