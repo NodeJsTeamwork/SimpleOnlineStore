@@ -10,7 +10,8 @@
         vm.request.pageSize = getParameterByName('pageSize') ? (+getParameterByName('pageSize')) : 10;
         vm.request.sortBy = getParameterByName('sortBy') ? getParameterByName('sortBy') : 'price';
         vm.request.type = getParameterByName('type') ? getParameterByName('type') : 'asc';
-        vm.request.userId = getParameterByName('userId') ? getParameterByName('userId') : null;      
+        vm.request.userId = getParameterByName('userId') ? getParameterByName('userId') : null;   
+        vm.request.category = getParameterByName('category') ? getParameterByName('category') : null;     
 
         vm.filterProducts = function () {
             var newLocation = currentPath
@@ -21,6 +22,10 @@
                 
             if (vm.request.userId) {
                 newLocation = newLocation + '&userId=' + vm.request.userId;
+            }
+                
+            if (vm.request.category) {
+                newLocation = newLocation + '&category=' + vm.request.category;
             }
                 
             window.location.href = newLocation;              

@@ -24,15 +24,15 @@ html
                                   i.material-icons chat
                                   
                           li
-                              a(href="/products/chairs") Chairs   
+                              a(href="/products?category=Chair") Chairs   
                                   i.material-icons stars
                                   
                           li
-                              a(href="/products/tables") Tables   
+                              a(href="/products?category=Table") Tables   
                                   i.material-icons stars
                                   
                           li
-                              a(href="/products/cabinets") Cabinets   
+                              a(href="/products?category=Cabinet") Cabinets   
                                   i.material-icons stars
                           if (currentUser && currentUser.roles.indexOf('admin') > -1)
                               li

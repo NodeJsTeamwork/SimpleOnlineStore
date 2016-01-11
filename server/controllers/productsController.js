@@ -32,7 +32,12 @@ module.exports = {
         })
     },
     getProducts: function (req, res, next) {
-        var userQuery = req.query.userId ? {user: req.query.userId} : {};
+        var customQuery = req.query.userId ? {user: req.query.userId} : {};
+        
+        if (req.query.category) {
+            customQuery['category'] = req.query.category;
+        }
+       
         var page = req.query.page ? req.query.page : 1;
         var limit = req.query.pageSize ? req.query.pageSize : 10;
         var sortBy = {};
@@ -42,53 +47,12 @@ module.exports = {
             sortBy[req.query.sortBy] = type;
         }
 
-        Product.paginate(userQuery, {page: page, limit: limit, sort: sortBy}, function (err, result) {
+        Product.paginate(customQuery, {page: page, limit: limit, sort: sortBy}, function (err, result) {
             if (err) {
                 console.log('Products could not be loaded: ' + err);
             }
 
             res.render('products/products', {currentUser: req.user, collection: result.docs, type: 'Product'});
-        })
-    },
-    getSpecificProducts: function (req, res, next) {
-        var userQuery = req.query.userId ? {user: req.query.userId} : {};
-        
-        // if there is a query string substring the url before the '?' symbol
-        // if there is no query string substing the url to the ulr.length
-        var queryStringStart = req.url.indexOf('?');
-        queryStringStart == -1 ? queryStringStart = req.url.length : queryStringStart;
-        var specificProductType = req.url.substring(10, queryStringStart).toLowerCase();
-        
-        // if the product type is not chairs, tables or cabinets -> redirect
-        if (specificProductType !== 'chairs' && specificProductType !== 'tables'
-            && specificProductType !== 'cabinets') {
-            
-            res.redirect('/');
-            return;
-        }
-        
-        // make the first letter uppercase and cut the last letter (e.g. chairs -> Chair)
-        specificProductType = specificProductType.slice(0, -1);
-        specificProductType = specificProductType.charAt(0).toUpperCase() + specificProductType.slice(1);
-        
-        // add the category field to the seach query
-        userQuery.category = specificProductType;
-        
-        var page = req.query.page ? req.query.page : 1;
-        var limit = req.query.pageSize ? req.query.pageSize : 10;
-        var sortBy = {};
-        var type = req.query.type;
-
-        if (req.query.sortBy) {
-            sortBy[req.query.sortBy] = type;
-        }
-
-        Product.paginate(userQuery, {page: page, limit: limit, sort: sortBy}, function (err, result) {
-            if (err) {
-                console.log('Products could not be loaded: ' + err);
-            }
-
-            res.render('products/products', {currentUser: req.user, collection: result.docs, type: specificProductType});
         })
     },
     removeFromCart: function (req, res, next) {
