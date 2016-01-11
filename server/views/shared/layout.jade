@@ -22,18 +22,9 @@ html
                           li
                               a(href="/live-chat") Live-Chat   
                                   i.material-icons chat
-                                  
                           li
-                              a(href="/products?category=Chair") Chairs   
-                                  i.material-icons stars
-                                  
-                          li
-                              a(href="/products?category=Table") Tables   
-                                  i.material-icons stars
-                                  
-                          li
-                              a(href="/products?category=Cabinet") Cabinets   
-                                  i.material-icons stars
+                              a(href="/products") Products   
+                                  i.material-icons shop
                           if (currentUser && currentUser.roles.indexOf('admin') > -1)
                               li
                                   a(href='bootstrap-elements.html' data-target='#' class='dropdown-toggle' data-toggle='dropdown') Admin Panel

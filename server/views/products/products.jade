@@ -1,51 +1,58 @@
 extends ../shared/layout
 
 block main-content
-	div(class='container' ng-controller='ProductsController as vm')
-		h1= (type + 's') || Products
-		.col-md-3
-			.form-group
-				label(class='col-md-2 control-label', for='sortby')
-					| Sort by
-				.col-md-10
-					select(class='form-control', id='sortby', ng-model='vm.request.sortBy')
-						option(value='name') Name
-						option(value='price') Price
-		.col-md-3
-			.form-group
-				label(class='col-md-2 control-label', for='type')
-					| Type
-				.col-md-10
-					select(class='form-control', id='type', ng-model='vm.request.type')
-						option(value='asc') Ascending
-						option(value='desc') Descending
-		.col-md-2
-			.form-group
-				label(class='col-md-3 control-label', for='pageSize')
-					| Page size
-				.col-md-9
-					input(type='number', class='form-control', id='pageSize', ng-model='vm.request.pageSize')
-		.col-md-2
-			.form-group
-				label(class='col-md-3 control-label', for='page')
-					| Page
-				.col-md-9
-					input(type='number', class='form-control', id='page', ng-model='vm.request.page')
-		.col-md-2
-			.form-group
-				button(class='btn btn-primary btn-raised' ng-click='vm.filterProducts()') Filter
-		<br>
-		table.table.table-stripped.table-hover
-			thead
-			tr
-				th Category
-				th Name
-				th Price
-			tbody
-				each product in collection
-					tr
-						td= product.category
-						td= product.name
-						td= product.price
-						td
-							a(class='btn',href='/cart/add?itemId='+product.id) Add To Cart
+	div(class='row' ng-controller='ProductsController as vm')
+		div(class='col-lg-2 col-lg-offset-1')
+			.btn-group-vertical
+				a(href='/products?category=Chair' class='btn btn-raised btn-primary') Chairs
+				a(href='/products?category=Desc' class='btn btn-raised btn-primary') Descs
+				a(href='/products?category=Table' class='btn btn-raised btn-primary') Tables
+				a(href='/products?category=Cabinet' class='btn btn-raised btn-primary') Cabinets
+		div(class='col-lg-8')
+			h1= (type + 's') || Products
+			.col-md-3
+				.form-group
+					label(class='col-md-2 control-label', for='sortby')
+						| Sort by
+					.col-md-10
+						select(class='form-control', id='sortby', ng-model='vm.request.sortBy')
+							option(value='name') Name
+							option(value='price') Price
+			.col-md-3
+				.form-group
+					label(class='col-md-2 control-label', for='type')
+						| Type
+					.col-md-10
+						select(class='form-control', id='type', ng-model='vm.request.type')
+							option(value='asc') Ascending
+							option(value='desc') Descending
+			.col-md-2
+				.form-group
+					label(class='col-md-3 control-label', for='pageSize')
+						| Page size
+					.col-md-9
+						input(type='number', class='form-control', id='pageSize', ng-model='vm.request.pageSize')
+			.col-md-2
+				.form-group
+					label(class='col-md-3 control-label', for='page')
+						| Page
+					.col-md-9
+						input(type='number', class='form-control', id='page', ng-model='vm.request.page')
+			.col-md-2
+				.form-group
+					button(class='btn btn-primary btn-raised' ng-click='vm.filterProducts()') Filter
+			<br>
+			table.table.table-stripped.table-hover
+				thead
+				tr
+					th Category
+					th Name
+					th Price
+				tbody
+					each product in collection
+						tr
+							td= product.category
+							td= product.name
+							td= product.price
+							td
+								a(class='btn',href='/cart/add?itemId='+product.id) Add To Cart
