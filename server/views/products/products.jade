@@ -48,12 +48,15 @@ block main-content
 					th Category
 					th Name
 					th Price
+					th Image
 					th 
 				tbody
 					each product in collection
 						tr
-							td= product.category
-							td= product.name
-							td= product.price
-							td
+							td(style='vertical-align:middle')= product.category
+							td(style='vertical-align:middle')= product.name
+							td(style='vertical-align:middle')= product.price
+							td(style='vertical-align:middle')
+								img(src=product.image class='image_table img-rounded')
+							td(style='vertical-align:middle')
 								a(class='btn',href='/cart/add?itemId='+product.id) Add To Cart
