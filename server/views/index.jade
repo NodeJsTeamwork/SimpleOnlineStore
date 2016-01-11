@@ -1,4 +1,27 @@
 extends shared/layout
 block main-content
 	.container
-		h1 This is a simple demo of an Online Store
+		.jumbotron
+			h1 Welcome to JustOffice
+			p The perfect place to search for stuff for your office place - tables, chairs, cabinets and many more!
+			p
+				a(class='btn btn-primary btn-lg' href='/products') Go shopping
+		<br>
+		table.table.table-stripped.table-hover
+			thead
+			tr
+				th Category
+				th Name
+				th Price
+				th Image
+				th 
+			tbody
+				each product in collection
+					tr
+						td(style='vertical-align:middle')= product.category
+						td(style='vertical-align:middle')= product.name
+						td(style='vertical-align:middle')= product.price
+						td(style='vertical-align:middle')
+							img(src=product.image class='image_table img-rounded')
+						td(style='vertical-align:middle')
+							a(class='btn btn-sm',href='/cart/add?itemId='+product.id) Add To Cart

@@ -30,9 +30,7 @@ module.exports = function(app) {
     app.post('/admin/cart/add', controllers.users.addItemToCart);
     app.post('/admin/cart/remove', controllers.users.removeItemFromCart);
 
-    app.get('/', function (req, res) {
-      res.render('index', {currentUser: req.user});
-    });
+    app.get('/', controllers.products.getLatestProducts);
 
     app.get('*', function(req, res) {
         res.render('index', {currentUser: req.user});

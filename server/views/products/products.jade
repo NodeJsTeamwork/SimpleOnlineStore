@@ -3,13 +3,15 @@ extends ../shared/layout
 block main-content
 	div(class='row' ng-controller='ProductsController as vm')
 		div(class='col-lg-2 col-lg-offset-1')
+			h2 Categories
+			br
 			.btn-group-vertical
 				a(href='/products?category=Chair' class='btn btn-raised btn-primary') Chairs
 				a(href='/products?category=Desc' class='btn btn-raised btn-primary') Descs
 				a(href='/products?category=Table' class='btn btn-raised btn-primary') Tables
 				a(href='/products?category=Cabinet' class='btn btn-raised btn-primary') Cabinets
 		div(class='col-lg-8')
-			h1= (type + 's') || Products
+			h1 Products
 			.col-md-3
 				.form-group
 					label(class='col-md-2 control-label', for='sortby')
@@ -59,4 +61,4 @@ block main-content
 							td(style='vertical-align:middle')
 								img(src=product.image class='image_table img-rounded')
 							td(style='vertical-align:middle')
-								a(class='btn',href='/cart/add?itemId='+product.id) Add To Cart
+								a(class='btn btn-sm',href='/cart/add?itemId='+product.id) Add To Cart
