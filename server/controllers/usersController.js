@@ -135,20 +135,6 @@ module.exports = {
                 });
         }
     },
-    getAddCartConfirmation: function (req, res, next) {
-        if (!req.user) {
-            res.redirect('/');
-        } else {
-            var product = req.query.itemId ? {id: req.query.itemId} : {};
-            productsData.getProductById(product.id, function (err, product) {
-                if (err) {
-                    console.log('Product could not be loaded: ' + err);
-                }
-                var collection = [product];
-                res.render('cart/addToCart', {currentUser: req.user, collection: collection});
-            });
-        }
-    },
     addItemToCart: function (req, res, next) {
         var newProductData = req.body;
         newProductData.user = req.user._id;
@@ -173,6 +159,20 @@ module.exports = {
             res.redirect('/cart');
         });
     },
+    removeFromCart: function (req, res, next) {
+        if (!req.user) {
+            res.redirect('/');
+        } else {
+            var product = req.query.itemId ? {id: req.query.itemId} : {};
+            productsData.getProductById(product.id, function (err, product) {
+                if (err) {
+                    console.log('Product could not be loaded: ' + err);
+                }
+                var collection = [product];
+                res.render('cart/productDetails', {currentUser: req.user, collection: collection, inCart:true});
+            });
+        }
+    },
     getCheckout: function (req, res, next) {
         if (!req.user) {
             res.redirect('/');
@@ -185,7 +185,7 @@ module.exports = {
                         console.log('Users could not be loaded: ' + err);
                     }
 
-                    res.render('cart/cart', {currentUser: req.user, cart: user.products});
+                    res.render('checkout/checkout', {currentUser: req.user, cart: user.products});
                 });
         }
     }

@@ -64,18 +64,15 @@ module.exports = {
             res.render('index', {currentUser: req.user, collection: result.docs.reverse()});
         })
     },
-    removeFromCart: function (req, res, next) {
-        if (!req.user) {
-            res.redirect('/');
-        } else {
-            var product = req.query.itemId ? {id: req.query.itemId} : {};
-            productsData.getProductById(product.id, function (err, product) {
-                if (err) {
-                    console.log('Product could not be loaded: ' + err);
-                }
-                var collection = [product];
-                res.render('cart/removeFromCart', {currentUser: req.user, collection: collection});
-            });
-        }
+    getProductDetails: function (req, res, next) {
+        console.log(req.query);
+        var product = req.query.itemId ? {id: req.query.itemId} : {};
+        productsData.getProductById(product.id, function (err, product) {
+            if (err) {
+                console.log('Product could not be loaded: ' + err);
+            }
+            var collection = [product];
+            res.render('cart/productDetails', {currentUser: req.user, collection: collection});
+        });
     }
 };
