@@ -19,7 +19,8 @@ module.exports = function(app) {
     app.get('/cart/remove', controllers.users.removeFromCart);
     app.get('/cart', controllers.users.getCart);
     
-    app.get('/checkout', controllers.users.getCheckout);
+    app.get('/checkout', controllers.orders.getCheckout);
+    app.post('/orders',controllers.orders.createOrder);
 
     app.get('/product', controllers.products.getProductDetails);
     app.get('/products', controllers.products.getProducts);
