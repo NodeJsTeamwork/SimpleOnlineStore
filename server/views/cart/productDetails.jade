@@ -20,14 +20,16 @@ block main-content
             tbody
                 each product in collection
                     tr
-                            td= product.category
-                            td= product.name
-                            td= product.price
-                            td= product.image
+                            td(style='vertical-align:middle')= product.category
+                            td(style='vertical-align:middle')= product.name
+                            td(style='vertical-align:middle')= product.price
+                            td(style='vertical-align:middle')= product.image
                             if(product.description)
-                                td= product.description
+                                td(style='vertical-align:middle')= product.description
                             if(currentUser)
                                 if(!inCart)
-                                    td(class='btn',ng-click='vm.addToCart()') Add To Cart
+                                    td(style='vertical-align:middle')
+                                        div(class='btn btn-sm',ng-click='vm.addToCart()') Add To Cart
                                 if(inCart)
-                                    td(class='btn',ng-click='vm.removeFromCart()') Remove From Cart
+                                    td(style='vertical-align:middle')
+                                        div(style='vertical-align:middle')(class='btn btn-sm',ng-click='vm.removeFromCart()') Remove From Cart

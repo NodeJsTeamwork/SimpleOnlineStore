@@ -20,16 +20,16 @@ block main-content
 						td
 				each product in cart
 					tr
-						td= product.category
-						td= product.name
-						td= product.price
-						td
-							a(class='btn',href='/cart/remove?itemId=' + product.id) Remove From Cart
+						td(style='vertical-align:middle')= product.category
+						td(style='vertical-align:middle')= product.name
+						td(style='vertical-align:middle')= product.price
+						td(style='vertical-align:middle')
+							a(class='btn btn-sm',href='/cart/remove?itemId=' + product.id) Remove From Cart
 				tr
-					td Total:
+					td(style='vertical-align:middle') Total:
 					td
-					td= cart.total
+					td(style='vertical-align:middle')= cart.total
 					td
 
 
-		a.btn.btn-primary.pull-right Checkout
+		a.btn.btn-primary.pull-right(href='/checkout') Checkout
