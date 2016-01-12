@@ -6,11 +6,7 @@ module.exports = {
     Product.create(product, callback);
   },
   getLatestProducts: function (callback) {
-      Product.find()
-      // the sort parameter will be dateOfCreation or rating
-             .sort('name')
-             .limit(10)
-             .exec(callback);
+      Product.paginate({}, {page: 1, limit: 10}, callback);
   },
   getProductById: function(id, callback){
     var idToSearch=mongoose.Types.ObjectId(id);

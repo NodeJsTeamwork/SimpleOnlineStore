@@ -55,15 +55,6 @@ module.exports = {
             res.render('products/products', {currentUser: req.user, collection: result.docs});
         })
     },
-    getLatestProducts: function (req, res, next) {
-        Product.paginate({}, {page: 1, limit: 10}, function (err, result) {
-            if (err) {
-                console.log('Products could not be loaded: ' + err);
-            }
-
-            res.render('index', {currentUser: req.user, collection: result.docs.reverse()});
-        })
-    },
     getProductDetails: function (req, res, next) {
         console.log(req.query);
         var product = req.query.itemId ? {id: req.query.itemId} : {};

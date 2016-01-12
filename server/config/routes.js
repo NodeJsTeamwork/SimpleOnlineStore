@@ -32,9 +32,7 @@ module.exports = function(app) {
     app.get('/profile', controllers.users.getProfile);
     app.post('/profile', controllers.users.updateUser);
 
-    app.get('/', controllers.products.getLatestProducts);
-
-    app.get('*', function(req, res) {
-        res.render('index', {currentUser: req.user});
-    });
+    app.get('/', controllers.home.getHome);
+    
+    app.get('*', controllers.home.getHome);
 };
