@@ -13,21 +13,23 @@ block main-content
                 th Category
                 th Name
                 th Price
-                th Picture
-                if(collection[0].description)
+                if(product.description)
                     th Description
-                th
             tbody
-                each product in collection
-                    tr
-                            td= product.category
-                            td= product.name
-                            td= product.price
-                            td= product.image
-                            if(product.description)
-                                td= product.description
-                            if(currentUser)
-                                if(!inCart)
-                                    td(class='btn',ng-click='vm.addToCart()') Add To Cart
-                                if(inCart)
-                                    td(class='btn',ng-click='vm.removeFromCart()') Remove From Cart
+                tr
+                    td(style='vertical-align:middle')= product.category
+                    td(style='vertical-align:middle')= product.name
+                    td(style='vertical-align:middle')= product.price
+                    if(product.description)
+                        td(style='vertical-align:middle')= product.description
+        if(product.image)
+            div(style="text-align:center")
+                img(src=product.image style="width:400px" class='img-rounded')
+                if(currentUser)
+        div(class='col-md-10 col-md-offset-1')
+            if(!inCart)
+                a.btn.btn-primary.pull-left(href='/products') Back to the shop
+                div(class='btn btn-primary pull-right',ng-click='vm.addToCart()') Add To Cart
+            if(inCart)
+                a.btn.btn-primary.pull-left(href='/cart') Back to the cart
+                div(style='vertical-align:middle' class='btn btn-primary pull-right',ng-click='vm.removeFromCart()') Remove From Cart

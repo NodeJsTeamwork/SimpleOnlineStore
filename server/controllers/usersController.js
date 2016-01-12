@@ -124,13 +124,8 @@ module.exports = {
                     if (err) {
                         console.log('Users could not be loaded: ' + err);
                     }
-                    var cart = user.cart,
-                        sum = 0,
-                        i;
-                    for (i = 0; i < cart.length; i += 1) {
-                        sum += cart[i].price;
-                    }
-                    cart['total'] = sum;
+                    var cart= user.cart;
+                    cart['total'] = user.calculateCartSum(cart);
                     res.render('cart/cart', {currentUser: req.user, cart: cart});
                 });
         }
@@ -168,25 +163,8 @@ module.exports = {
                 if (err) {
                     console.log('Product could not be loaded: ' + err);
                 }
-                var collection = [product];
-                res.render('cart/productDetails', {currentUser: req.user, collection: collection, inCart:true});
+                res.render('cart/productDetails', {currentUser: req.user, product: product, inCart:true});
             });
-        }
-    },
-    getCheckout: function (req, res, next) {
-        if (!req.user) {
-            res.redirect('/');
-        } else {
-            console.log(req.user.products);
-            User.findById({_id: req.user._id})
-                .populate('products')
-                .exec(function (err, user) {
-                    if (err) {
-                        console.log('Users could not be loaded: ' + err);
-                    }
-
-                    res.render('checkout/checkout', {currentUser: req.user, cart: user.products});
-                });
         }
     }
 };

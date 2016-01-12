@@ -19,7 +19,10 @@ module.exports = function(app) {
     app.get('/cart/remove', controllers.users.removeFromCart);
     app.get('/cart', controllers.users.getCart);
     
-    app.get('/checkout', controllers.users.getCheckout);
+    app.get('/checkout', controllers.orders.getCheckout);
+    app.get('/orders',controllers.orders.getOrders);
+    app.get('/order',controllers.orders.getOrderDetails);
+    app.post('/orders',controllers.orders.createOrder);
 
     app.get('/product', controllers.products.getProductDetails);
     app.get('/products', controllers.products.getProducts);
@@ -34,4 +37,4 @@ module.exports = function(app) {
     app.get('*', function(req, res) {
         res.render('index', {currentUser: req.user});
     });
-}
+};
