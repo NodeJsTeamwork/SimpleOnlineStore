@@ -27,9 +27,10 @@ block main-content
                 img(src=product.image style="width:400px" class='img-rounded')
                 if(currentUser)
         div(class='col-md-10 col-md-offset-1')
-            if(!inCart)
-                a.btn.btn-primary.pull-left(href='/products') Back to the shop
-                div(class='btn btn-primary pull-right',ng-click='vm.addToCart()') Add To Cart
-            if(inCart)
-                a.btn.btn-primary.pull-left(href='/cart') Back to the cart
-                div(style='vertical-align:middle' class='btn btn-primary pull-right',ng-click='vm.removeFromCart()') Remove From Cart
+            a.btn.btn-primary.pull-left(href='/products') Back to the shop
+            if(currentUser)
+                if(!inCart)
+                    div(class='btn btn-primary pull-right',ng-click='vm.addToCart()') Add To Cart
+                if(inCart)
+                    a.btn.btn-primary.pull-left(href='/cart') Back to the cart
+                    div(style='vertical-align:middle' class='btn btn-primary pull-right',ng-click='vm.removeFromCart()') Remove From Cart
