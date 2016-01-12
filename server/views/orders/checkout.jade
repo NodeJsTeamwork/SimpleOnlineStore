@@ -22,12 +22,20 @@ block main-content
                             | Address
                         .col-md-10
                             textarea(class='form-control', rows='3', id='address', ng-model='order.address')
+                    table.table.table-stripped.table-hover
+                        thead
+                        tr
+                            th Product
+                            th Price
+                        tbody
+                            each product in cart
+                                tr
+                                    td(style='vertical-align:middle')= product.name
+                                    td(style='vertical-align:middle')= product.price
+                            tr
+                                td(style='vertical-align:middle') Total:
+                                td(style='vertical-align:middle')= cart.sum
                     .form-group
-                        label(class='col-md-2 control-label')
-                            | Price
-                        .col-md-10
-                            div(ng-model='order.price')= sum
-                    .form-group
-                        div(class='col-md-10 col-md-offset-2')
-                            a(class='btn btn-primary', href='/cart') Back
-                            button(class='btn btn-primary', ng-click='vm.createOrder(order)') Order
+                        div(class='col-md-10 col-md-offset-1')
+                            a(class='btn btn-primary pull-left', href='/cart') Back
+                            button(class='btn btn-primary pull-right', ng-click='vm.createOrder(order)') Order
