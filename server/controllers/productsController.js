@@ -71,8 +71,7 @@ module.exports = {
             if (err) {
                 console.log('Product could not be loaded: ' + err);
             }
-            var collection = [product];
-            res.render('cart/productDetails', {currentUser: req.user, collection: collection});
+            res.render('cart/productDetails', {currentUser: req.user, product: product});
         });
     }
 };

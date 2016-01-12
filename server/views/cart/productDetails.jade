@@ -13,23 +13,23 @@ block main-content
                 th Category
                 th Name
                 th Price
-                th Picture
-                if(collection[0].description)
+                if(product.description)
                     th Description
                 th
             tbody
-                each product in collection
-                    tr
-                            td(style='vertical-align:middle')= product.category
-                            td(style='vertical-align:middle')= product.name
-                            td(style='vertical-align:middle')= product.price
-                            td(style='vertical-align:middle')= product.image
-                            if(product.description)
-                                td(style='vertical-align:middle')= product.description
-                            if(currentUser)
-                                if(!inCart)
-                                    td(style='vertical-align:middle')
-                                        div(class='btn btn-sm',ng-click='vm.addToCart()') Add To Cart
-                                if(inCart)
-                                    td(style='vertical-align:middle')
-                                        div(style='vertical-align:middle')(class='btn btn-sm',ng-click='vm.removeFromCart()') Remove From Cart
+                tr
+                    td(style='vertical-align:middle')= product.category
+                    td(style='vertical-align:middle')= product.name
+                    td(style='vertical-align:middle')= product.price
+                    if(product.description)
+                        td(style='vertical-align:middle')= product.description
+                    if(currentUser)
+                        if(!inCart)
+                            td(style='vertical-align:middle')
+                                div(class='btn btn-sm',ng-click='vm.addToCart()') Add To Cart
+                        if(inCart)
+                            td(style='vertical-align:middle')
+                                div(style='vertical-align:middle')(class='btn btn-sm',ng-click='vm.removeFromCart()') Remove From Cart
+        if(product.image)
+            div(style="text-align:center")
+                img(src=product.image style="width:400px")
