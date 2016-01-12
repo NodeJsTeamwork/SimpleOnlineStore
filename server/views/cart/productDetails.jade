@@ -15,7 +15,6 @@ block main-content
                 th Price
                 if(product.description)
                     th Description
-                th
             tbody
                 tr
                     td(style='vertical-align:middle')= product.category
@@ -23,13 +22,14 @@ block main-content
                     td(style='vertical-align:middle')= product.price
                     if(product.description)
                         td(style='vertical-align:middle')= product.description
-                    if(currentUser)
-                        if(!inCart)
-                            td(style='vertical-align:middle')
-                                div(class='btn btn-sm',ng-click='vm.addToCart()') Add To Cart
-                        if(inCart)
-                            td(style='vertical-align:middle')
-                                div(style='vertical-align:middle')(class='btn btn-sm',ng-click='vm.removeFromCart()') Remove From Cart
         if(product.image)
             div(style="text-align:center")
-                img(src=product.image style="width:400px")
+                img(src=product.image style="width:400px" class='img-rounded')
+                if(currentUser)
+        div(class='col-md-10 col-md-offset-1')
+            if(!inCart)
+                a.btn.btn-primary.pull-left(href='/products') Back to the shop
+                div(class='btn btn-primary pull-right',ng-click='vm.addToCart()') Add To Cart
+            if(inCart)
+                a.btn.btn-primary.pull-left(href='/cart') Back to the cart
+                div(style='vertical-align:middle' class='btn btn-primary pull-right',ng-click='vm.removeFromCart()') Remove From Cart

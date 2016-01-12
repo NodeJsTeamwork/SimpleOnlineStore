@@ -11,22 +11,19 @@ block main-content
 			table.table.table-stripped.table-hover
 				thead
 				tr
-					th Category
+					th Date
 					th Name
 					th Price
+					th Image
 					th
 				tbody
-					if (cart.length == 0)
-						tr
-							td
-							td The Cart is Empty
-							td
-							td
 					each product in cart
 						tr
 							td(style='vertical-align:middle')= product.category
 							td(style='vertical-align:middle')= product.name
 							td(style='vertical-align:middle')= product.price
+							td(style='vertical-align:middle')
+								img(src=product.image class='image_table img-rounded')
 							td(style='vertical-align:middle')
 								a(class='btn btn-sm',href='/cart/remove?itemId=' + product.id) Remove From Cart
 					tr
@@ -34,6 +31,8 @@ block main-content
 						td
 						td(style='vertical-align:middle')= cart.total
 						td
-		a.btn.btn-primary.pull-left(href='/products') Back to the shop
-		if (cart.length > 0)
-			a.btn.btn-primary.pull-right(href='/checkout') Checkout
+						td
+		div(class='col-md-10 col-md-offset-1')
+			a.btn.btn-primary.pull-left(href='/products') Back to the shop
+			if (cart.length > 0)
+				a.btn.btn-primary.pull-right(href='/checkout') Checkout

@@ -3,11 +3,10 @@
 
     function OrdersCreateController(ordersService) {
         var vm = this;
-
         vm.createOrder = function (newOrder) {
             ordersService.createOrder(newOrder)
                 .then(function (result) {
-                    window.location.href = '/orders';
+                    window.location.href='/orders';
                 })
         }
     }
