@@ -1,4 +1,8 @@
-var UsersController = require('./UsersController');
+var encryption = require('../utilities/cripto'),
+    usersData = require('../data/usersData'),
+    productsData = require('../data/productsData');
+
+var UsersController = require('./UsersController')(encryption, usersData, productsData);
 var ProductsController = require('./ProductsController');
 var LiveChatController = require('./LiveChatController');
 var OrdersController = require('./OrdersController');
