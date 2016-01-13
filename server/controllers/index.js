@@ -3,7 +3,7 @@ var encryption = require('../utilities/cripto'),
     productsData = require('../data/productsData');
 
 var UsersController = require('./UsersController')(encryption, usersData, productsData);
-var ProductsController = require('./ProductsController');
+var ProductsController = require('./ProductsController')(usersData, productsData);
 var LiveChatController = require('./LiveChatController');
 var OrdersController = require('./OrdersController');
 var HomeController = require('./HomeController');

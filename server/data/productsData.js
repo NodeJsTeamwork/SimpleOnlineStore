@@ -11,5 +11,8 @@ module.exports = {
   getProductById: function(id, callback){
     var idToSearch=mongoose.Types.ObjectId(id);
     Product.findById(idToSearch, callback);
+  },
+  getPagedProducts: function (customQuery, pagingQuery, callback) {
+       Product.paginate(customQuery, pagingQuery, callback);
   }
 };
