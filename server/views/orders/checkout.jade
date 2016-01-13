@@ -1,0 +1,41 @@
+extends ../shared/layout
+
+block main-content
+    .container(ng-controller='OrdersCreateController as vm')
+        div(class='well col-md-8 col-md-offset-2')
+            form.form-horizontal
+                fieldset
+                    legend
+                        | Checkout
+                    .form-group
+                        label(class='col-md-2 control-label', for='credit-card')
+                            | Credit Card
+                        .col-md-10
+                            input(type='text', class='form-control', placeholder='Credit Card', id='credit-card', ng-model='order.creditCard')
+                    .form-group
+                        label(class='col-md-2 control-label', for='name')
+                            | Name
+                        .col-md-10
+                            input(type='text', class='form-control', placeholder='Name', id='name', ng-model='order.name')
+                    .form-group
+                        label(class='col-md-2 control-label', for='address')
+                            | Address
+                        .col-md-10
+                            textarea(class='form-control', rows='3', id='address', ng-model='order.address')
+                    table.table.table-stripped.table-hover
+                        thead
+                        tr
+                            th Product
+                            th Price
+                        tbody
+                            each product in cart
+                                tr
+                                    td(style='vertical-align:middle')= product.name
+                                    td(style='vertical-align:middle')= product.price
+                            tr
+                                td(style='vertical-align:middle') Total:
+                                td(style='vertical-align:middle')= cart.sum
+                    .form-group
+                        div(class='col-md-10 col-md-offset-1')
+                            a(class='btn btn-primary pull-left', href='/cart') Back
+                            button(class='btn btn-primary pull-right', ng-click='vm.createOrder(order)') Order

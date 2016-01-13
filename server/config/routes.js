@@ -14,27 +14,25 @@ module.exports = function(app) {
     app.get('/admin/users', controllers.users.getAll);
     app.get('/admin/profile', controllers.users.getProfileByAdmin);
 
-    app.get('/cart/remove', controllers.products.removeFromCart);
-    app.get('/cart/add', controllers.users.getAddCartConfirmation);
+    app.post('/cart/add', controllers.users.addItemToCart);
+    app.post('/cart/remove', controllers.users.removeItemFromCart);
+    app.get('/cart/remove', controllers.users.removeFromCart);
     app.get('/cart', controllers.users.getCart);
     
-    app.get('/checkout', controllers.users.getCheckout);
-    
+    app.get('/checkout', controllers.orders.getCheckout);
+    app.get('/orders',controllers.orders.getOrders);
+    app.get('/order',controllers.orders.getOrderDetails);
+    app.post('/orders',controllers.orders.createOrder);
+
+    app.get('/product', controllers.products.getProductDetails);
     app.get('/products', controllers.products.getProducts);
     
     app.get('/live-chat', controllers.liveChat.getChat);
     
     app.get('/profile', controllers.users.getProfile);
     app.post('/profile', controllers.users.updateUser);
+
+    app.get('/', controllers.home.getHome);
     
-    app.post('/admin/cart/add', controllers.users.addItemToCart);
-    app.post('/admin/cart/remove', controllers.users.removeItemFromCart);
-
-    app.get('/', function (req, res) {
-      res.render('index', {currentUser: req.user});
-    });
-
-    app.get('*', function(req, res) {
-        res.render('index', {currentUser: req.user});
-    });
-}
+    app.get('*', controllers.home.getHome);
+};

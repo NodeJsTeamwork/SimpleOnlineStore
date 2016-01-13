@@ -2,13 +2,15 @@ var mongoose = require('mongoose');
 var mongoosePaginate = require('mongoose-paginate');
 
 module.exports.init = function () {
-    var productSchema = new mongoose.Schema({
+    var orderSchema = new mongoose.Schema({
+        purchased: {type: Date, default: Date.now},
         price: Number,
-        products: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Product' }],
-        user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
+        address: String,
+        products: [{type: mongoose.Schema.Types.ObjectId, ref: 'Product'}],
+        user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
     });
 
-    productSchema.plugin(mongoosePaginate);
+    orderSchema.plugin(mongoosePaginate);
 
-    var Product = mongoose.model('Order', productSchema);
+    var Order = mongoose.model('Order', orderSchema);
 };

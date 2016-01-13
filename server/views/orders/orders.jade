@@ -1,0 +1,27 @@
+extends ../shared/layout
+
+block main-content
+    .container
+        if (orders.length == 0)
+            h1(style='text-align:center') Your have no orders!
+        else
+            h1 Orders History
+        br
+        if (orders.length > 0)
+            table.table.table-stripped.table-hover
+                thead
+                tr
+                    th Date
+                    th Address
+                    th Price
+                    th
+                tbody
+                    each order in orders
+                        tr
+                            td(style='vertical-align:middle')= moment(order.purchased).format('LLL')
+                            td(style='vertical-align:middle')= order.address
+                            td(style='vertical-align:middle')= order.price
+                            td(style='vertical-align:middle')
+                                a(class='btn btn-sm',href='/order?orderId=' + order.id) Details
+        div(class='col-md-10 col-md-offset-1')
+            a.btn.btn-primary.pull-left(href='/products') Back to the shop

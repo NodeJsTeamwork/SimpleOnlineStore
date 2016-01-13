@@ -26,8 +26,16 @@ module.exports.init = function () {
           else {
               return false;
           }
+      },
+      calculateCartSum: function(cart){
+          var sum = 0,
+              i;
+          for (i = 0; i < cart.length; i += 1) {
+              sum += cart[i].price;
+          }
+          return sum;
       }
-  })
+  });
 
   var User = mongoose.model('User', userSchema);
   
