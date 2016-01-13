@@ -23,8 +23,8 @@ block main-content
                     if(product.description)
                         td(style='vertical-align:middle')= product.description
         if(product.image)
-            div(style="text-align:center")
-                img(src=product.image style="width:400px" class='img-rounded')
+            div(style="text-align:center" class="col-md-6")
+                img(src=product.image class='img-rounded')
                 if(currentUser)
         div(class='col-md-10 col-md-offset-1')
             a.btn.btn-primary.pull-left(href='/products') Back to the shop
