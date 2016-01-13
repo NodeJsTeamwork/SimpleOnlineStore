@@ -1,7 +1,3 @@
-// var encryption = require('../utilities/cripto'),
-//     usersData = require('../data/usersData'),
-//     productsData = require('../data/productsData');
-
 module.exports = function (usersData, productsData, encryption) {
     var contoller = {
         getRegister: function (req, res, next) {
