@@ -7,7 +7,7 @@ var UsersController = require('./UsersController')(encryption, usersData, produc
 var ProductsController = require('./ProductsController')(usersData, productsData);
 var LiveChatController = require('./LiveChatController')(messagesData);
 var OrdersController = require('./OrdersController');
-var HomeController = require('./HomeController');
+var HomeController = require('./HomeController')(productsData);
 
 module.exports = {
   users: UsersController,
