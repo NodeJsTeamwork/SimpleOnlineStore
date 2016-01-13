@@ -1,12 +1,13 @@
 var encryption = require('../utilities/cripto'),
     usersData = require('../data/usersData'),
     productsData = require('../data/productsData'),
-    messagesData = require('../data/messagesData');
+    messagesData = require('../data/messagesData'),
+    ordersData = require('../data/ordersData');
 
 var UsersController = require('./UsersController')(usersData, productsData, encryption);
 var ProductsController = require('./ProductsController')(usersData, productsData);
 var LiveChatController = require('./LiveChatController')(messagesData);
-var OrdersController = require('./OrdersController');
+var OrdersController = require('./OrdersController')(usersData, ordersData);
 var HomeController = require('./HomeController')(productsData);
 
 module.exports = {

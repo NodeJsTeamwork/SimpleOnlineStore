@@ -18,5 +18,10 @@ module.exports = {
       User.findById({_id: id})
                 .populate('cart')
                 .exec(callback)
-  }
+  },
+  getUserByIdWithOrder: function (id, callback) {
+      User.findById({_id: id})
+                .populate('orders')
+                .exec(callback)
+  },
 };
