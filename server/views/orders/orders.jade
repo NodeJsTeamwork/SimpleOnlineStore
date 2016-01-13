@@ -18,7 +18,7 @@ block main-content
                 tbody
                     each order in orders
                         tr
-                            td(style='vertical-align:middle')= order.purchased
+                            td(style='vertical-align:middle')= moment(order.purchased).format('LLL')
                             td(style='vertical-align:middle')= order.address
                             td(style='vertical-align:middle')= order.price
                             td(style='vertical-align:middle')

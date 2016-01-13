@@ -16,7 +16,8 @@ module.exports = function(app, config) {
     app.use(passport.initialize());
     app.use(passport.session());
     app.use(express.static(config.rootPath + '/public'));
-
+    app.locals.moment = require('moment');
+    
     app.use('/admin', function (req, res, next) {
       if (!auth.isInRole('admin')(req, res, next)) {
         req.session.error = 'You are not authorized!';
