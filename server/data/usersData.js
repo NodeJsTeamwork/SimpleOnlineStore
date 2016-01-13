@@ -17,11 +17,11 @@ module.exports = {
   getUserByIdWithCart: function (id, callback) {
       User.findById({_id: id})
                 .populate('cart')
-                .exec(callback)
+                .exec(callback);
   },
   getUserByIdWithOrder: function (id, callback) {
       User.findById({_id: id})
                 .populate('orders')
-                .exec(callback)
-  },
+                .exec(callback);
+  }
 };
