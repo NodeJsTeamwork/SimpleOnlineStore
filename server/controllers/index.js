@@ -9,11 +9,13 @@ var ProductsController = require('./ProductsController')(usersData, productsData
 var LiveChatController = require('./LiveChatController')(messagesData);
 var OrdersController = require('./OrdersController')(usersData, ordersData);
 var HomeController = require('./HomeController')(productsData);
+var CartController = require('./CartController')(usersData, productsData);
 
 module.exports = {
   users: UsersController,
   products: ProductsController,
   liveChat: LiveChatController,
   orders: OrdersController,
-  home: HomeController
+  home: HomeController,
+  cart: CartController
 };
