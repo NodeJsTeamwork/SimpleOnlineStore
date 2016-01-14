@@ -2,4 +2,34 @@ extends ../shared/layout
 
 block main-content
     .container
-        h1 TODO
+        h1 Order details
+
+        table.table.table-stripped.table-hover
+            thead
+            tr
+                th Address
+                th Name
+            tbody
+                tr
+                    td(style='vertical-align:middle')= order.address
+                    td(style='vertical-align:middle')= order.price
+        div(class='col-md-10 col-md-offset-1')
+            a.btn.btn-primary.pull-left(href='/orders') Back to all orders
+        table.table.table-stripped.table-hover
+            thead
+            tr
+                th Category
+                th Name
+                th Price
+                th Image
+                th
+            tbody
+                each product in order.products
+                    tr
+                        td(style='vertical-align:middle')= product.category
+                        td(style='vertical-align:middle')= product.name
+                        td(style='vertical-align:middle')= product.price
+                        td(style='vertical-align:middle')
+                            img(src=product.image class='image_table img-rounded')
+                        td(style='vertical-align:middle')
+                            a(class='btn btn-sm',href='/order/product/' + product.id) Product Details

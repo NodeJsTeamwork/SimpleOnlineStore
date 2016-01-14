@@ -25,6 +25,10 @@ html
                           li
                               a(href="/products") Products   
                                   i.material-icons shop
+                          if(currentUser)
+                              li
+                                  a(href="/orders") Orders
+                                      i.material-icons assignment
                           if (currentUser && currentUser.roles.indexOf('admin') > -1)
                               li
                                   a(href='bootstrap-elements.html' data-target='#' class='dropdown-toggle' data-toggle='dropdown') Admin Panel

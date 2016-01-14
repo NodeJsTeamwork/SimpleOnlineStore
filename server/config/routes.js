@@ -22,6 +22,7 @@ module.exports = function(app) {
     app.get('/checkout', controllers.orders.getCheckout);
     app.get('/orders',controllers.orders.getOrders);
     app.get('/order/:id',controllers.orders.getOrderDetails);
+    app.get('/order/product/:id',controllers.orders.getOrderSingleProductDetails);
     app.post('/orders',controllers.orders.createOrder);
 
     app.get('/product/:id', controllers.products.getProductDetails);
