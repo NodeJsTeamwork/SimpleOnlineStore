@@ -6,7 +6,9 @@ var url = 'http://localhost:3030',
     sinonChai = require('sinon-chai'),
     fakes = require('./fakes'),
     usersController = require('../server/controllers/usersController')(fakes.usersData, fakes.productsData, fakes.cripto),
-    productsController = require('../server/controllers/productsController')(fakes.usersData, fakes.productsData);
+    productsController = require('../server/controllers/productsController')(fakes.usersData, fakes.productsData),
+    homeController = require('../server/controllers/homeController')(fakes.productsData),
+    liveChatController = require('../server/controllers/liveChatController')(fakes.messagesData);
 chai.use(chaiHttp);
 chai.use(sinonChai);
 
@@ -625,7 +627,7 @@ describe('productsController', function () {
             expect(res.render.calledWith('products/add')).to.be.true;
         });
     });
-    
+
     describe('createProduct', function () {
         it('should redirect to / if valid data is passed', function () {
             var res = {
@@ -649,7 +651,7 @@ describe('productsController', function () {
             expect(res.redirect.calledWith('/')).to.be.true;
         });
     });
-    
+
     describe('getProducts', function () {
         it('shold made request to database with valid query params', function () {
             var res = {
@@ -669,7 +671,7 @@ describe('productsController', function () {
                     sortBy: 'asc'
                 }
             };
-            
+
             var expectedCustomQuery = {}
 
             var expectedQuery = {
@@ -688,7 +690,7 @@ describe('productsController', function () {
 
             expect(fakes.productsData.getPagedProducts.calledWith(expectedCustomQuery, expectedQuery)).to.be.true;
         });
-        
+
         it('shold redner products page with the right products', function () {
             var res = {
                 redirect: function () { },
@@ -707,7 +709,7 @@ describe('productsController', function () {
                     sortBy: 'asc'
                 }
             };
-            
+
             var expectedCustomQuery = {}
 
             var expectedQuery = {
@@ -721,7 +723,7 @@ describe('productsController', function () {
             var next = function () { };
 
             sinon.spy(res, 'render');
-            
+
             var expectedResult = {
                 currentUser: req.user,
                 collection: []
@@ -732,7 +734,7 @@ describe('productsController', function () {
             expect(res.render.calledWith('products/products', expectedResult)).to.be.true;
         });
     });
-    
+
     describe('getProductDetails', function () {
         it('shold render product details page with the right product', function () {
             var res = {
@@ -751,7 +753,7 @@ describe('productsController', function () {
             };
 
             var next = function () { };
-            
+
             var expectedResult = {
                 currentUser: req.user,
                 product: {}
@@ -762,6 +764,71 @@ describe('productsController', function () {
             productsController.getProductDetails(req, res, next);
 
             expect(res.render.calledWith('cart/productDetails', expectedResult)).to.be.true;
+        });
+    });
+});
+
+describe('homeController', function () {
+    describe('getHome', function () {
+        it('should render index page with the latest products', function () {
+            var res = {
+                redirect: function () { },
+                render: function () { }
+            };
+
+            var req = {
+                user: {}
+            };
+            var next = function () { };
+
+            sinon.spy(res, 'render');
+            var collection = [
+                {
+                    id: 1
+                },
+                {
+                    id: 2
+                }
+            ];
+
+            var expectedResult = {
+                currentUser: req.user,
+                collection: collection.reverse()
+            }
+
+
+            homeController.getHome(req, res, next);
+
+            expect(res.render.called).to.be.true;
+            expect(res.render.calledWith('index', expectedResult)).to.be.true;
+        });
+    });
+});
+
+describe('liveChatController', function () {
+    describe('getChat', function () {
+        it('should render live-chat page with all chat messages', function () {
+            var res = {
+                redirect: function () { },
+                render: function () { }
+            };
+
+            var req = {
+                user: {}
+            };
+            var next = function () { };
+
+            sinon.spy(res, 'render');
+
+            var expectedResult = {
+                currentUser: req.user,
+                messages: [1, 2, 3]
+            }
+
+            liveChatController.getChat(req, res, next);
+
+            expect(res.render.called).to.be.true;
+            expect(res.render.calledWith('live-chat/live-chat', expectedResult)).to.be.true;
         });
     });
 });
