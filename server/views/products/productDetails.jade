@@ -1,0 +1,40 @@
+extends ../shared/layout
+
+block main-content
+    div.container(ng-controller='CartController as vm')
+        div.row
+            if(inCart)
+                h1 Are you sure you want to remove this product from your cart?
+            else
+                h1 Product details
+            if(product.image)
+                div.col-md-3
+                    img(src=product.image class='img-rounded')
+            div(class=typeof product.image === "undefined" ? "" : "col-md-9")
+                table.table.table-stripped.table-hover
+                    thead
+                        tr
+                            th Category
+                            th Product Name
+                            th Price
+                            if(product.description)
+                                th Description
+                    tbody
+                        tr
+                            td(style='vertical-align:middle')= product.category
+                            td(style='vertical-align:middle')= product.name
+                            td(style='vertical-align:middle')= product.price
+                            if(product.description)
+                                td(style='vertical-align:middle')= product.description
+            div(class='col-md-10 col-md-offset-1')
+                if(inOrder)
+                    a.btn.btn-primary.pull-left(href='/orders') Back to all orders
+                if(!inOrder && !inCart)
+                    a.btn.btn-primary.pull-left(href='/products') Back to the shop
+                if(currentUser)
+                    if(!inOrder)
+                        if(!inCart)
+                            div(class='btn btn-primary pull-right', ng-click='vm.addToCart()') Add To Cart
+                        if(inCart)
+                            a.btn.btn-primary.pull-left(href='/cart') Back to the cart
+                            div(style='vertical-align:middle' class='btn btn-primary pull-right', ng-click='vm.removeFromCart()') Remove From Cart

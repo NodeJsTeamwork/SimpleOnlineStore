@@ -14,17 +14,18 @@ module.exports = function(app) {
     app.get('/admin/users', controllers.users.getAll);
     app.get('/admin/profile', controllers.users.getProfileByAdmin);
 
-    app.post('/cart/add', controllers.users.addItemToCart);
-    app.post('/cart/remove', controllers.users.removeItemFromCart);
-    app.get('/cart/remove', controllers.users.removeFromCart);
-    app.get('/cart', controllers.users.getCart);
+    app.post('/cart/add', controllers.cart.addItemToCart);
+    app.post('/cart/remove', controllers.cart.removeItemFromCart);
+    app.get('/cart/remove/:id', controllers.cart.removeFromCart);
+    app.get('/cart', controllers.cart.getCart);
     
     app.get('/checkout', controllers.orders.getCheckout);
     app.get('/orders',controllers.orders.getOrders);
-    app.get('/order',controllers.orders.getOrderDetails);
+    app.get('/order/:id',controllers.orders.getOrderDetails);
+    app.get('/order/product/:id',controllers.orders.getOrderSingleProductDetails);
     app.post('/orders',controllers.orders.createOrder);
 
-    app.get('/product', controllers.products.getProductDetails);
+    app.get('/product/:id', controllers.products.getProductDetails);
     app.get('/products', controllers.products.getProducts);
     
     app.get('/live-chat', controllers.liveChat.getChat);

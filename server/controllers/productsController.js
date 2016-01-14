@@ -20,7 +20,6 @@ module.exports = function (usersData, productsData) {
                         req.session.error = 'Unable to add product';
                     }
                     console.log('Updated!!!', user);
-
                     res.redirect('/');
                 });
 
@@ -52,18 +51,16 @@ module.exports = function (usersData, productsData) {
                 if (err) {
                     console.log('Products could not be loaded: ' + err);
                 }
-
                 res.render('products/products', { currentUser: req.user, collection: result.docs });
             })
         },
         getProductDetails: function (req, res, next) {
-            console.log(req.query);
-            var product = req.query.itemId ? { id: req.query.itemId } : {};
+            var product = req.params.id ? { id: req.params.id } : {};
             productsData.getProductById(product.id, function (err, product) {
                 if (err) {
                     console.log('Product could not be loaded: ' + err);
                 }
-                res.render('cart/productDetails', { currentUser: req.user, product: product });
+                res.render('products/productDetails', { currentUser: req.user, product: product });
             });
         }
     };

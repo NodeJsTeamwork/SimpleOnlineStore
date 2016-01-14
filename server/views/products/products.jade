@@ -14,41 +14,41 @@ block main-content
 			h1 Products
 			.col-md-3
 				.form-group
-					label(class='col-md-2 control-label', for='sortby')
+					label.col-md-2.control-label(for='sortby')
 						| Sort by
 					.col-md-10
-						select(class='form-control', id='sortby', ng-model='vm.request.sortBy')
+						select.form-control(id='sortby', ng-model='vm.request.sortBy')
 							option(value='name') Name
 							option(value='price') Price
 			.col-md-3
 				.form-group
-					label(class='col-md-2 control-label', for='type')
+					label.col-md-2.control-label(for='type')
 						| Type
 					.col-md-10
-						select(class='form-control', id='type', ng-model='vm.request.type')
+						select.form-control(id='type', ng-model='vm.request.type')
 							option(value='asc') Ascending
 							option(value='desc') Descending
 			.col-md-2
 				.form-group
-					label(class='col-md-3 control-label', for='pageSize')
+					label.col-md-3.control-label(for='pageSize')
 						| Page size
 					.col-md-9
-						input(type='number', class='form-control', id='pageSize', ng-model='vm.request.pageSize')
+						input.form-control(type='number', id='pageSize', ng-model='vm.request.pageSize')
 			.col-md-2
 				.form-group
-					label(class='col-md-3 control-label', for='page')
+					label.col-md-3.control-label(for='page')
 						| Page
 					.col-md-9
-						input(type='number', class='form-control', id='page', ng-model='vm.request.page')
+						input.form-control(type='number', id='page', ng-model='vm.request.page')
 			.col-md-2
 				.form-group
-					button(class='btn btn-primary btn-raised' ng-click='vm.filterProducts()') Filter
+					button.btn.btn-primary.btn-raised(ng-click='vm.filterProducts()') Filter
 			<br>
 			table.table.table-stripped.table-hover
 				thead
 					tr
 						th Category
-						th Name
+						th Product Name
 						th Price
 						th Image
 						th
@@ -59,6 +59,6 @@ block main-content
 							td(style='vertical-align:middle')= product.name
 							td(style='vertical-align:middle')= product.price
 							td(style='vertical-align:middle')
-								img(src=product.image class='image_table img-rounded')
+								img.image_table.img-rounded(src=product.image)
 							td(style='vertical-align:middle')
-								a(class='btn btn-sm',href='/product?itemId='+product.id) Product Details
+								a(class='btn btn-sm',href='/product/' + product.id) Product Details

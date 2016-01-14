@@ -3,7 +3,7 @@ extends ../shared/layout
 block main-content
 	.container
 		if (cart.length == 0)
-			h1(style='text-align:center') Your Cart is Empty!
+			h1.text-center Your Cart is Empty!
 		else
 			h1 Shopping Cart
 		br
@@ -25,14 +25,14 @@ block main-content
 							td(style='vertical-align:middle')
 								img(src=product.image class='image_table img-rounded')
 							td(style='vertical-align:middle')
-								a(class='btn btn-sm',href='/cart/remove?itemId=' + product.id) Remove From Cart
+								a.btn.btn-sm(href='/cart/remove/' + product.id) Remove From Cart
 					tr
 						td(style='vertical-align:middle') Total:
 						td
 						td(style='vertical-align:middle')= cart.total
 						td
 						td
-		div(class='col-md-10 col-md-offset-1')
+		div.col-md-10.col-md-offset-1
 			a.btn.btn-primary.pull-left(href='/products') Back to the shop
 			if (cart.length > 0)
 				a.btn.btn-primary.pull-right(href='/checkout') Checkout

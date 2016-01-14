@@ -115,58 +115,6 @@ module.exports = function (usersData, productsData, encryption) {
 
                 res.render('profile/profile', { currentUser: req.user, userToUpdate: user });
             });
-        },
-        getCart: function (req, res, next) {
-            if (!req.user) {
-                res.redirect('/');
-            }
-            else {
-                usersData.getUserByIdWithCart(req.user._id, function (err, user) {
-                    if (err) {
-                        console.log('Users could not be loaded: ' + err);
-                    }
-                    var cart = user.cart;
-                    cart['total'] = user.calculateCartSum(cart);
-                    res.render('cart/cart', { currentUser: req.user, cart: cart });
-                });
-            }
-        },
-        addItemToCart: function (req, res, next) {
-            var newProductData = req.body;
-            newProductData.user = req.user._id;
-            usersData.updateUser({ _id: req.user._id }, { $push: { "cart": newProductData.itemId } }, function (err, user) {
-                if (err) {
-                    console.log("ERROR", err);
-                    req.session.error = 'Unable to add to cart';
-                }
-                console.log('Updated!!!', user);
-                res.redirect('/cart');
-            });
-        },
-        removeItemFromCart: function (req, res, next) {
-            var newProductData = req.body;
-            newProductData.user = req.user._id;
-            usersData.updateUser({ _id: req.user._id }, { $pop: { "cart": newProductData.itemId } }, function (err, user) {
-                if (err) {
-                    console.log("ERROR", err);
-                    req.session.error = 'Unable to remove product';
-                }
-                console.log('Updated!!!', user);
-                res.redirect('/cart');
-            });
-        },
-        removeFromCart: function (req, res, next) {
-            if (!req.user) {
-                res.redirect('/');
-            } else {
-                var product = req.query.itemId ? { id: req.query.itemId } : {};
-                productsData.getProductById(product.id, function (err, product) {
-                    if (err) {
-                        console.log('Product could not be loaded: ' + err);
-                    }
-                    res.render('cart/productDetails', { currentUser: req.user, product: product, inCart: true });
-                });
-            }
         }
     };
     

@@ -3,9 +3,8 @@
 
     function CartController(cartService) {
         var vm = this;
-        var currentPath = window.location.search;
-        var itemId = currentPath.substring(currentPath.lastIndexOf('=') + 1);
-        console.log(itemId);
+        var currentPath = window.location.pathname;
+        var itemId = currentPath.substring(currentPath.lastIndexOf('/') + 1);
 
         vm.addToCart = function () {
             var vm = this;
@@ -14,12 +13,12 @@
             };
             cartService.addToCart(itemToAdd)
                 .then(function (result) {
-                    console.log('added to cart!');
-                    window.location.href='/cart';
+                    window.location.href = '/cart';
                 }, function (err) {
                     console.log(err);
                 })
         };
+
         vm.removeFromCart = function () {
             var vm = this;
             var itemToRemove = {
@@ -27,8 +26,7 @@
             };
             cartService.removeFromCart(itemToRemove)
                 .then(function (result) {
-                    console.log('removed from cart!');
-                    window.location.href='/cart';
+                    window.location.href = '/cart';
                 }, function (err) {
                     console.log(err);
                 })
