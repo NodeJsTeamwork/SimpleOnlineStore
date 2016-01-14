@@ -22,6 +22,6 @@ block main-content
                             td(style='vertical-align:middle')= order.address
                             td(style='vertical-align:middle')= order.price
                             td(style='vertical-align:middle')
-                                a(class='btn btn-sm',href='/order/' + order.id) Details
-        div(class='col-md-10 col-md-offset-1')
+                                a.btn.btn-sm(href='/order/' + order.id) Details
+        div.col-md-10.col-md-offset-1
             a.btn.btn-primary.pull-left(href='/products') Back to the shop

@@ -31,7 +31,7 @@ html
                                       i.material-icons assignment
                           if (currentUser && currentUser.roles.indexOf('admin') > -1)
                               li
-                                  a(href='bootstrap-elements.html' data-target='#' class='dropdown-toggle' data-toggle='dropdown') Admin Panel
+                                  a.dropdown-toggle(href='bootstrap-elements.html' data-target='#' data-toggle='dropdown') Admin Panel
                                       b.caret
                                   ul.dropdown-menu
                                       li
@@ -63,7 +63,7 @@ html
         .container
           if (errorMessage)
             .alert.alert-dismissible.alert-danger
-                button.close(type='button', class='close' data-dismiss='alert') x
+                button.close(type='button', data-dismiss='alert') x
                 .text-center #{errorMessage}
         block main-content
         include scripts

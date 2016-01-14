@@ -8,18 +8,18 @@ block main-content
             thead
             tr
                 th Address
-                th Name
+                th Price
             tbody
                 tr
                     td(style='vertical-align:middle')= order.address
                     td(style='vertical-align:middle')= order.price
-        div(class='col-md-10 col-md-offset-1')
+        div.col-md-10.col-md-offset-1
             a.btn.btn-primary.pull-left(href='/orders') Back to all orders
         table.table.table-stripped.table-hover
             thead
             tr
                 th Category
-                th Name
+                th Product Name
                 th Price
                 th Image
                 th
@@ -30,6 +30,6 @@ block main-content
                         td(style='vertical-align:middle')= product.name
                         td(style='vertical-align:middle')= product.price
                         td(style='vertical-align:middle')
-                            img(src=product.image class='image_table img-rounded')
+                            img.image_table.img-rounded(src=product.image)
                         td(style='vertical-align:middle')
-                            a(class='btn btn-sm',href='/order/product/' + product.id) Product Details
+                            a.btn.btn-sm(href='/order/product/' + product.id) Product Details

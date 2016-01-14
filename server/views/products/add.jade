@@ -8,38 +8,38 @@ block main-content
 					legend 
 						| Add product
 					.form-group
-						label(class='col-md-2 control-label', for='category')
+						label.col-md-2.control-label(for='category')
 							| Category
 						.col-md-10
-							select(class='form-control', id='category', ng-model='product.category' ng-required='true')
+							select.form-control(id='category', ng-model='product.category' ng-required='true')
 								option Chair
 								option Table
 								option Desc
 								option Cabinet
 					.form-group
-						label(class='col-md-2 control-label', for='name')
+						label.col-md-2.control-label(for='name')
 							| Name
 						.col-md-10
-							input(type='text', class='form-control', placeholder='Name', id='name', ng-model='product.name' ng-required='true')
+							input.form-control(type='text', placeholder='Name', id='name', ng-model='product.name' ng-required='true')
 					.form-group
-						label(class='col-md-2 control-label', for='description')
+						label.col-md-2.control-label(for='description')
 							| Description
 						.col-md-10
-							textarea(class='form-control', rows='3', id='description', ng-model='product.description' ng-required='true')
+							textarea.form-control(rows='3', id='description', ng-model='product.description' ng-required='true')
 					.form-group
-						label(class='col-md-2 control-label', for='price')
+						label.col-md-2.control-label(for='price')
 							| Price
 						.col-md-10
-							input(type='number', class='form-control', placeholder='Price', id='price', ng-model='product.price' ng-required='true')
+							input.form-control(type='number', placeholder='Price', id='price', ng-model='product.price' ng-required='true')
 					.form-group
-						label(class='col-md-2 control-label', for='image')
+						label.col-md-2.control-label(for='image')
 							| Image
 						.col-md-10
-							input(type='text', class='form-control', placeholder='Image', id='image', ng-model='product.image')
+							input.form-control(type='text', placeholder='Image', id='image', ng-model='product.image')
 					div(class='form-group' ng-show='product.image')
 						.col-md-6.col-md-offset-3
 							img(src='{{product.image}}')
 					.form-group
 						div(class='col-md-10 col-md-offset-2')
-							button(class='btn btn-primary', type='reset') Cancel
-							button(class='btn btn-primary', ng-click='vm.createProduct(product)' ng-disabled="addProduct.$invalid") Submit
+							button.btn.btn-primary(type='reset') Cancel
+							button.btn.btn-primary(ng-click='vm.createProduct(product)' ng-disabled="addProduct.$invalid") Submit
