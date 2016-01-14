@@ -31,7 +31,7 @@ module.exports = function (usersData, productsData) {
         removeItemFromCart: function (req, res, next) {
             var newProductData = req.body;
             newProductData.user = req.user._id;
-            usersData.updateUser({ _id: req.user._id }, { $pop: { cart: newProductData.itemId } }, function (err, user) {
+            usersData.updateUser({ _id: req.user._id }, { $pull: { cart: newProductData.itemId } }, function (err, user) {
                 if (err) {
                     console.log("ERROR", err);
                     req.session.error = 'Unable to remove product';
