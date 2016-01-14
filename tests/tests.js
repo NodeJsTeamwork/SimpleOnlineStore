@@ -8,7 +8,8 @@ var url = 'http://localhost:3030',
     usersController = require('../server/controllers/usersController')(fakes.usersData, fakes.productsData, fakes.cripto),
     productsController = require('../server/controllers/productsController')(fakes.usersData, fakes.productsData),
     homeController = require('../server/controllers/homeController')(fakes.productsData),
-    liveChatController = require('../server/controllers/liveChatController')(fakes.messagesData);
+    liveChatController = require('../server/controllers/liveChatController')(fakes.messagesData),
+    cartController = require('../server/controllers/cartController')(fakes.usersData, fakes.productsData);
 chai.use(chaiHttp);
 chai.use(sinonChai);
 
@@ -450,7 +451,9 @@ describe('usersController', function () {
             expect(res.render.calledWith('profile/profile', expectedUser)).to.be.true;
         });
     });
+});
 
+describe('cartController', function () {
     describe('getCart', function () {
         it('shold redirect to / if no user is passed', function () {
             var res = {
@@ -467,7 +470,7 @@ describe('usersController', function () {
 
             sinon.spy(res, 'redirect');
 
-            usersController.getCart(req, res, next);
+            cartController.getCart(req, res, next);
 
             expect(res.redirect.called).to.be.true;
             expect(res.redirect.calledWith('/')).to.be.true;
@@ -497,7 +500,7 @@ describe('usersController', function () {
                 }
             }
 
-            usersController.getCart(req, res, next);
+            cartController.getCart(req, res, next);
 
             expect(res.render.called).to.be.true;
             expect(res.render.calledWith('cart/cart', expectedUser)).to.be.true;
@@ -524,7 +527,7 @@ describe('usersController', function () {
 
             sinon.spy(res, 'redirect');
 
-            usersController.addItemToCart(req, res, next);
+            cartController.addItemToCart(req, res, next);
 
             expect(res.redirect.called).to.be.true;
             expect(res.redirect.calledWith('/cart')).to.be.true;
@@ -551,7 +554,7 @@ describe('usersController', function () {
 
             sinon.spy(res, 'redirect');
 
-            usersController.removeItemFromCart(req, res, next);
+            cartController.removeItemFromCart(req, res, next);
 
             expect(res.redirect.called).to.be.true;
             expect(res.redirect.calledWith('/cart')).to.be.true;
@@ -575,7 +578,7 @@ describe('usersController', function () {
 
             sinon.spy(res, 'redirect');
 
-            usersController.removeFromCart(req, res, next);
+            cartController.removeFromCart(req, res, next);
 
             expect(res.redirect.called).to.be.true;
             expect(res.redirect.calledWith('/')).to.be.true;
@@ -594,20 +597,22 @@ describe('usersController', function () {
                 user: {
                     _id: 5
                 },
-                query: {}
+                params: {
+                    id: 5
+                }
             };
 
             var next = function () { };
 
             sinon.spy(res, 'render');
 
-            usersController.removeFromCart(req, res, next);
+            cartController.removeFromCart(req, res, next);
 
             expect(res.render.called).to.be.true;
-            expect(res.render.calledWith('cart/productDetails')).to.be.true;
+            expect(res.render.calledWith('products/productDetails')).to.be.true;
         });
     });
-});
+})
 
 describe('productsController', function () {
     describe('getAdd', function () {
@@ -747,8 +752,8 @@ describe('productsController', function () {
                 body: {},
                 user: {},
                 session: {},
-                query: {
-                    itemId: 1
+                params: {
+                    id: 1
                 }
             };
 
@@ -763,7 +768,7 @@ describe('productsController', function () {
 
             productsController.getProductDetails(req, res, next);
 
-            expect(res.render.calledWith('cart/productDetails', expectedResult)).to.be.true;
+            expect(res.render.calledWith('products/productDetails', expectedResult)).to.be.true;
         });
     });
 });
