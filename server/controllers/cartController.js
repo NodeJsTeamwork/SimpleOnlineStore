@@ -24,7 +24,6 @@ module.exports = function (usersData, productsData) {
                     req.session.error = 'Unable to add to cart';
                     return;
                 }
-                console.log('Updated!!!', user);
                 res.redirect('/cart');
             });
         },
@@ -37,7 +36,6 @@ module.exports = function (usersData, productsData) {
                     req.session.error = 'Unable to remove product';
                     return;
                 }
-                console.log('Updated!!!', user);
                 res.redirect('/cart');
             });
         },
@@ -46,7 +44,6 @@ module.exports = function (usersData, productsData) {
                 res.redirect('/');
             } else {
                 var product = req.params.id ? { id: req.params.id } : {};
-                console.log(product);
                 productsData.getProductById(product.id, function (err, product) {
                     if (err) {
                         console.log('Product could not be loaded: ' + err);

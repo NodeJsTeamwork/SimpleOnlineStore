@@ -19,7 +19,6 @@ module.exports = function (usersData, productsData) {
                         console.log("ERROR", err);
                         req.session.error = 'Unable to add product';
                     }
-                    console.log('Updated!!!', user);
                     res.redirect('/');
                 });
 
