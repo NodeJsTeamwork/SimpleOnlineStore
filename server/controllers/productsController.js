@@ -42,7 +42,7 @@ module.exports = function (usersData, productsData) {
 
             var pagingQuery = {
                 page: page,
-                limit: limit,
+                limit: +limit,
                 sort: sortBy
             };
 
@@ -63,6 +63,6 @@ module.exports = function (usersData, productsData) {
             });
         }
     };
-    
+
     return controller;
 };
